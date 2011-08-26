@@ -46,6 +46,14 @@ set ruler
 set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set laststatus=2
 
+" Improve scrolling when lines wrap around
+nnoremap <silent> k gk
+nnoremap <silent> j gj
+nnoremap <silent> <Up> gk
+nnoremap <silent> <Down> gj
+inoremap <silent> <Up> <Esc>gka
+inoremap <silent> <Down> <Esc>gja
+
 " Swap ; and : outside of insert mode
 nnoremap ; :
 nnoremap : ;
