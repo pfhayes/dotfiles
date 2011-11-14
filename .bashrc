@@ -5,6 +5,10 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+PAGER=less
+EDITOR=vim
+
+# Finished adapting your PATH environment variable for use with MacPorts.
 # don't put duplicate lines in the history.
 HISTCONTROL=ignoredups:ignorespace
 
