@@ -13,6 +13,10 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000
 
+# Prevent accidentally overwriting files when piping output
+# echo hello >out.txt will fail if out.txt already exists
+set -o noclobber
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -79,3 +83,7 @@ fi
 #if [ -n "$CAPS" ]; then
 #  xmodmap ~/.speedswapper
 #fi
+
+# PATH for MacPorts
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
