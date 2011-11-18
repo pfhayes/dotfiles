@@ -26,6 +26,9 @@ map N Nzz
 set autoindent
 set smartindent
 set smarttab
+" When you type a # character as the first character of a line,
+" it pushes that to the first column. This fixes that issue
+inoremap # X<BS>#
 
 " Configure backspace
 set bs=indent,eol,start
