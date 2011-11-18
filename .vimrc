@@ -1,8 +1,51 @@
-" Make your tabs equal to two spaces
+syntax on
+
+" Some reasonable defaults
+set shell=bash
+set noerrorbells
+set visualbell t_vb=
+set nobackup
+set encoding=utf-8
+set showmode
+set showcmd
+set ttyfast
+set laststatus=2
+set history=1000
+set ignorecase
+set smartcase
+set incsearch
+set lazyredraw
+set showbreak=↪
+set splitbelow
+set splitright
+set title
+set backspace=indent,eol,start
+set number
+set ruler
+set autoindent
+set smartindent
+set smarttab
 set shiftwidth=2
 set expandtab
 set tabstop=2
 set softtabstop=2
+set hlsearch
+set showmatch
+set gdefault
+set undofile
+set undoreload=10000
+set scrolloff=3
+set sidescroll=1
+set sidescrolloff=10
+set virtualedit=block,onemore
+
+set undodir=~/.vim/tmp/undo//
+set backupdir=~/.vim/tmp/backup//
+set directory=~/.vim/tmp/swap//
+
+" When you type a # character as the first character of a line,
+" it pushes that to the first column. This fixes that issue
+inoremap # X<BS>#
 
 " If any literal tabs make their way into your files, highlight them
 syn match tab display "\t"
@@ -11,43 +54,21 @@ hi link tab Error
 " Highlight lines over 80 characters
 match ErrorMsg '\%>80v.\+'
 
+" Highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
 " Use :w!! to save with sudo
 cmap w!! %!sudo tee > /dev/null %
-
-" Highlight search results
-set hlsearch
-set showmatch
 
 " Center view on search results
 map n nzz
 map N Nzz
 
-" Sets up indenting
-set autoindent
-set smartindent
-set smarttab
-" When you type a # character as the first character of a line,
-" it pushes that to the first column. This fixes that issue
-inoremap # X<BS>#
-
-" Configure backspace
-set bs=indent,eol,start
-
-" Don't create backups
-set nobackup
-
-" Sets smart case search. Only searches case sensitively if there is a capital
-" letter in your 
-set ignorecase
-set smartcase
-
-" Line numbering
-set number
-set ruler
-
 " Status line
 set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set laststatus=2
+
+" When the window is resized, fix splits
+au VimResized * exe "normal! \<c-w>="
 
 " Improve scrolling when lines wrap around
 nnoremap <silent> k gk
@@ -56,6 +77,10 @@ nnoremap <silent> <Up> gk
 nnoremap <silent> <Down> gj
 inoremap <silent> <Up> <Esc>gka
 inoremap <silent> <Down> <Esc>gja
+
+" Better regex search
+nnoremap / /\v
+vnoremap / /\v
 
 " Swap ; and : outside of insert mode
 nnoremap ; :
@@ -73,14 +98,8 @@ map <C-Up> <C-w>k
 map <C-Right> <C-w>l
 map <C-Left> <C-w>h
 
-" Don't emit bell noises/flashes
-set noerrorbells
-set visualbell t_vb=
-
-set shell=bash
-
-" Syntax highlighting
-syntax on
+" Splits the current line at current position
+nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 
 " When you create a new file, fills in some code for you
 " au BufNewFile *.h 0r ~/.vim/skeleton.h
