@@ -102,10 +102,12 @@ map <C-Left> <C-w>h
 nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 
 " When you create a new file, fills in some code for you
-" au BufNewFile *.h 0r ~/.vim/skeleton.h
-" au BufNewFile *.cc 0r ~/.vim/skeleton.cc
+au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
+au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
+au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
 
 " When you write a file, make sure no lines end in whitespace
 autocmd BufWritePre *.cc :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
+autocmd BufWritePre *.py :%s/\s\+$//e
 
