@@ -41,7 +41,7 @@ set virtualedit=block,onemore
 
 set undodir=~/.vim/tmp/undo//
 set backupdir=~/.vim/tmp/backup//
-set directory=~/.vim/tmp/swap//
+" set directory=~/.vim/tmp/swap//
 
 " When you type a # character as the first character of a line,
 " it pushes that to the first column. This fixes that issue

@@ -52,6 +52,9 @@ xterm*|rxvt*)
     ;;
 esac
 
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -90,4 +93,3 @@ fi
 
 # PATH for MacPorts
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
