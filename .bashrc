@@ -7,6 +7,7 @@
 
 PAGER=less
 EDITOR=vim
+PATH=~/bin:$PATH
 
 # Finished adapting your PATH environment variable for use with MacPorts.
 # don't put duplicate lines in the history.
