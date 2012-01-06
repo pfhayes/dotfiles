@@ -7,8 +7,7 @@
 
 PAGER=less
 EDITOR=vim
-PATH=~/bin:$PATH
-export PYTHONPATH=~/dev/py:$PYTHONPATH
+export PATH=~/bin:$PATH
 
 # Finished adapting your PATH environment variable for use with MacPorts.
 # don't put duplicate lines in the history.
@@ -93,5 +92,3 @@ fi
 #  xmodmap ~/.speedswapper
 #fi
 
-# PATH for MacPorts
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
