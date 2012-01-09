@@ -7,9 +7,7 @@
 
 PAGER=less
 EDITOR=vim
-export PATH=~/bin:$PATH
 
-# Finished adapting your PATH environment variable for use with MacPorts.
 # don't put duplicate lines in the history.
 HISTCONTROL=ignoredups:ignorespace
 
@@ -53,6 +51,8 @@ xterm*|rxvt*)
     ;;
 esac
 
+# Use the prefix of what you have typed already to search backwards when
+# pressing up/down to navigate history
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
