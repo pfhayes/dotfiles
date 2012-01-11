@@ -31,17 +31,8 @@ if [ -n `which git` ]; then
   }
 
 # make prompt show current git branch
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]$(parse_git_branch "%s")\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='\[\033[01;32m\]$(parse_git_branch "%s")\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    export PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # Use the prefix of what you have typed already to search backwards when
 # pressing up/down to navigate history
@@ -69,13 +60,6 @@ alias vim='vim -O'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
 
 # map caps lock to escape - this will make you way more productive
 # in VIM - but prevents you from using caps lock
