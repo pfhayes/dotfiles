@@ -39,7 +39,7 @@ set virtualedit=block,onemore
 
 set backupdir=~/.vim/tmp/backup//
 " set directory=~/.vim/tmp/swap//
-if version >= 730
+if version >= 703
   set undofile
   set undoreload=10000
   set undodir=~/.vim/tmp/undo//
