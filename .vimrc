@@ -32,16 +32,18 @@ set softtabstop=2
 set hlsearch
 set showmatch
 set gdefault
-set undofile
-set undoreload=10000
 set scrolloff=3
 set sidescroll=1
 set sidescrolloff=10
 set virtualedit=block,onemore
 
-set undodir=~/.vim/tmp/undo//
 set backupdir=~/.vim/tmp/backup//
 " set directory=~/.vim/tmp/swap//
+if version >= 730
+  set undofile
+  set undoreload=10000
+  set undodir=~/.vim/tmp/undo//
+endif
 
 " When you type a # character as the first character of a line,
 " it pushes that to the first column. This fixes that issue
