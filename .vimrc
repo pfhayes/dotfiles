@@ -64,6 +64,10 @@ cmap w!! %!sudo tee > /dev/null %
 map n nzz
 map N Nzz
 
+" Clear search patterns after hitting enter/esc
+nnoremap <CR> :noh<CR><CR>
+nnoremap <ESC> :noh<CR><ESC>
+
 " Status line
 set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 
