@@ -87,9 +87,16 @@ alias f=finger
 alias grep='grep --color=auto'
 alias j=jobs
 alias ll='ls -al'
-alias ls='ls -G'
 alias man='LC_ALL=C LANG=C man'
 alias vim='vim -O'
+
+# colorizing ls output is different on different platforms
+ls --color=auto >/dev/null 2>/dev/null
+if [[ $? -eq 0 ]]; then
+  alias ls='ls --color=auto'
+else
+  alias ls='ls -G'
+fi
 
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[5~" up-line-or-history
