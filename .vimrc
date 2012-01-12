@@ -106,6 +106,17 @@ map <C-Left> <C-w>h
 " Splits the current line at current position
 nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 
+" Use gw to open webpages. Only works in OS X right now
+function! Website ()
+  let s:url = expand("<cWORD>")
+  let s:protocol = matchstr(s:url, '[a-z]*:\/\/')
+  if s:protocol == ""
+    let s:url = 'http://' . s:url
+  endif
+  exec "!open \"" . s:url . "\""
+endfunction
+nnoremap gw :call Website()<CR><CR>
+
 " When you create a new file, fills in some code for you
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
 au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
