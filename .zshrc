@@ -73,13 +73,14 @@ fi
 #   - show the user name
 #   - shows the git branch, if any
 #   - shows the current directory
+#   - warns me with red text if running as root
 PS1='[\
 %(0?.. $PR_RED%?$PR_NO_COLOR )\
 $PR_CYAN%n$PR_NO_COLOR:\
 $PR_GREEN$(parse_git_branch)$PR_NO_COLOR:\
 $PR_BLUE%~$PR_NO_COLOR\
 ]%(!.#.$) '
-RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
+RPS1='$PR_MAGENTA(%D{%b %d %H:%M})%(!.$PR_RED.$PR_NO_COLOR)'
 
 unsetopt ALL_EXPORT
 
