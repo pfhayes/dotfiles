@@ -34,8 +34,8 @@ setopt CDABLE_VARS        # if var holds a directory, then cd var works
 
 # Autoload zsh modules when they are referenced
 zmodload -a zsh/stat stat
-autoload -U zcalc zmv
-autoload -U compinit && compinit
+autoload -Uz zcalc zmv
+autoload -Uz compinit && compinit
 
 setopt ALL_EXPORT         # export declared variables
 

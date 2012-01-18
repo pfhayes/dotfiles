@@ -1,7 +1,7 @@
 syntax on
 
 " Some reasonable defaults
-set shell=bash
+set shell=zsh
 set noerrorbells
 set visualbell t_vb=
 set nobackup
@@ -68,6 +68,16 @@ map N Nzz
 
 " Clear search patterns after hitting enter
 nnoremap <CR> :noh<CR><CR>
+" Clear search patterns when entering insert mode
+nnoremap i :noh<CR>i
+nnoremap I :noh<CR>I
+nnoremap a :noh<CR>a
+nnoremap A :noh<CR>A
+nnoremap o :noh<CR>o
+nnoremap O :noh<CR>O
+nnoremap s :noh<CR>s
+nnoremap S :noh<CR>S
+nnoremap R :noh<CR>R
 
 " Status line
 set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
@@ -97,7 +107,7 @@ vnoremap : ;
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-map <C-h> <C-w>h
+map <C-h> <C-w>h 
 map <C-Down> <C-w>j
 map <C-Up> <C-w>k
 map <C-Right> <C-w>l
@@ -126,4 +136,8 @@ au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
 autocmd BufWritePre *.cc :%s/\s\+$//e
 autocmd BufWritePre *.h :%s/\s\+$//e
 autocmd BufWritePre *.py :%s/\s\+$//e
+
+" For writing text
+au BufNewFile,BufRead *.txt setf txt
+au FileType txt set tw=79
 
