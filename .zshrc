@@ -84,6 +84,7 @@ RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
 
 unsetopt ALL_EXPORT
 
+alias ack='ack -i'
 alias f=finger
 alias grep='grep --color=auto'
 alias j=jobs
@@ -127,8 +128,6 @@ zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
 zstyle ':completion:*' menu select=1 _complete _ignored _approximate
-zstyle -e ':completion:*:approximate:*' max-errors \
-    'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
 zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p%s'
 zstyle ':completion:*:processes' command 'ps -axw'
 zstyle ':completion:*:processes-names' command 'ps -awxho command'
@@ -136,11 +135,12 @@ zstyle ':completion:*:processes-names' command 'ps -awxho command'
 # Completion Styles
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 # list of completers to use
-zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
+zstyle ':completion:*::::' completer _expand _complete _ignored #_approximate
 
 # allow one error for every three characters typed in approximate completer
-zstyle -e ':completion:*:approximate:*' max-errors \
-    'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
+  # this is so annoying
+#zstyle -e ':completion:*:approximate:*' max-errors \
+#    'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
     
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
