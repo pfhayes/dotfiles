@@ -61,16 +61,6 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
-# better which
-  PARAM="vim"
-  while [ -n "$(alias $PARAM)" ]; do
-    PARAM="$(alias $PARAM | sed -e 's/.*=//' -e 's/ .*//')"
-    echo $PARAM
-  done
-  whence "$PARAM"
-
-alias which='bwhich'
-
 # get the git branch
 parse_git_branch() {
   if [ -n "$(whence git)" ]; then
