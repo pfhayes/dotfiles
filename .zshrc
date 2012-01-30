@@ -62,11 +62,21 @@ done
 PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
 # get the git branch
-if [ -n `which git` ]; then
-  parse_git_branch() {
+parse_git_branch() {
+  if [ -n "$(which git)" ]; then
     git branch --no-color 2> /dev/null |  sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-  }
-fi
+  else
+    echo ''
+  fi
+}
+print_git_branch() {
+  RET="$(parse_git_branch)"
+  if [ -n "$RET" ]; then
+    echo "$PR_GREEN$RET$PR_NO_COLOR:"
+  else
+    echo "$PR_NO_COLOR"
+  fi
+}
 
 # prompt
 #   - if the previous command returned nonzero, show that
@@ -77,7 +87,7 @@ fi
 PS1='[\
 %(0?.. $PR_RED%?$PR_NO_COLOR )\
 %(!.$PR_RED.$PR_CYAN)%n$PR_NO_COLOR$PR_CYAN@%m$PR_NO_COLOR:\
-$PR_GREEN$(parse_git_branch)$PR_NO_COLOR:\
+$(print_git_branch)\
 $PR_BLUE%~$PR_NO_COLOR\
 ]%(!.#.$) '
 RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
