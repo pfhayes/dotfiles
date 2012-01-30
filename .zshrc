@@ -42,7 +42,7 @@ setopt ALL_EXPORT         # export declared variables
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
-HOSTNAME="`hostname`"
+HOSTNAME="$(hostname)"
 PAGER='less'
 EDITOR='vim'
 LC_ALL='en_US.UTF-8'
@@ -127,7 +127,7 @@ bindkey "\e[B" history-search-forward
 
 # map caps lock to escape - this will make you way more productive
 # in VIM - but prevents you from using caps lock
-#CAPS=`eval "xmodmap -pke | grep 'Caps'"`
+#CAPS="$(eval "xmodmap -pke | grep 'Caps'")"
 #if [ -n "$CAPS" ]; then
 #  xmodmap ~/.speedswapper
 #fi
