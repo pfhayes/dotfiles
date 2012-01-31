@@ -50,6 +50,16 @@ LANG='en_US.UTF-8'
 LC_CTYPE=C
 DISPLAY=:0
 
+# better which
+bwhich() {
+  if [ -n "$(alias $1)" ]; then
+    whence -ca $1
+  else
+    whence -c $1
+  fi
+}
+alias which='bwhich'
+
 # colors
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
@@ -63,7 +73,7 @@ PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
 # get the git branch
 parse_git_branch() {
-  if [ -n "$(whence git)" ]; then
+  if [ -n "$(which git)" ]; then
     git branch --no-color 2> /dev/null |  sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
   else
     echo ''
