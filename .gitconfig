@@ -1,9 +1,32 @@
 [user]
 	name = Patrick Hayes
 	email = pfhayes@gmail.com
+[core]
+  editor = vim
 [alias]
   br = branch
   ci = commit
   co = checkout
   dif = diff
   st = status
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[color "branch"]
+  current = magenta bold
+  local = yellow
+  remote = magenta
+[color "diff"]
+  new = green bold
+  old = red bold
+  frag = cyan bold
+  meta = white bold
+  whitespace = red reverse
+[color "status"]
+  added = green bold
+  removed = red bold
+  changed = cyan bold
+  untracked = white bold
+
+
