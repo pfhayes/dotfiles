@@ -1,0 +1,9 @@
+[user]
+	name = Patrick Hayes
+	email = pfhayes@gmail.com
+[alias]
+  br = branch
+  ci = commit
+  co = checkout
+  dif = diff
+  st = status

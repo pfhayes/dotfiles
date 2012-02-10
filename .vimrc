@@ -37,6 +37,7 @@ set scrolloff=3
 set sidescroll=1
 set sidescrolloff=10
 set virtualedit=block,onemore
+set wildmenu
 
 " set backupdir=~/.vim/tmp/backup//
 " set directory=~/.vim/tmp/swap//
