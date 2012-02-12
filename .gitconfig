@@ -14,7 +14,7 @@
   diff = auto
   status = auto
 [color "branch"]
-  current = magenta bold
+  current = cyan bold
   local = yellow
   remote = magenta
 [color "diff"]
