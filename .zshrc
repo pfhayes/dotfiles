@@ -1,3 +1,12 @@
+#!/bin/zsh
+
+# When we source this file, specify as the first argument the directory
+# containing other config files, so we can reference them
+CONFIG_DIR=$1
+if [ -n "$DIR" ]; then
+  CONFIG_DIR=~
+fi
+
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
@@ -114,10 +123,15 @@ alias vim='vim -O'
 
 # colorizing ls output is different on different platforms
 ls --color=auto >/dev/null 2>/dev/null
-if [[ $? -eq 0 ]]; then
+if [ $? -eq 0 ]; then
   alias ls='ls --color=auto'
 else
   alias ls='ls -G'
+fi
+if [ -n "$(whence dircolors)" ]; then
+  if [ -e "$CONFIG_DIR/.dircolors" ]; then
+    eval `dircolors -b $CONFIG_DIR/.dircolors`
+  fi
 fi
 
 bindkey '^r' history-incremental-search-backward

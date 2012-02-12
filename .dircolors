@@ -1,0 +1,25 @@
+# Directory coloring for ls
+
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+
+NORMAL  00
+FILE    00        # normal file
+DIR     00;34     # directory
+LINK    00;36     # symbolic link.
+ORPHAN  07;31     # symlink to nonexistent file
+MISSING 07;31     # similar
+
+# things I don't care about
+FIFO    00;35  # pipe
+SOCK    00;35  # socket
+DOOR    00;35  # door
+BLK     00;35  # block device driver
+CHR     00;35  # character device driver
+
+# Files with execute permissions
+EXEC    00;31
