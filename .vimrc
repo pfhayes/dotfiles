@@ -133,6 +133,7 @@ nnoremap gw :call Website()<CR><CR>
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
 au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
 au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
+au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 
 " When you write a file, make sure no lines end in whitespace
 autocmd BufWritePre *.cc :%s/\s\+$//e
