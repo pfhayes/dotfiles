@@ -31,7 +31,6 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set hlsearch
-set showmatch
 set gdefault
 set scrolloff=3
 set sidescroll=1
@@ -122,6 +121,9 @@ map <C-Left> <C-w>h
 
 " Splits the current line at current position
 nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
+
+" Better MatchParen
+:hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
 " Use gw to open webpages. Only works in OS X right now
 function! Website ()
