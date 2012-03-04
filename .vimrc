@@ -150,5 +150,7 @@ autocmd BufWritePre *.py :%s/\s\+$//e
 " For writing text
 au BufNewFile,BufRead *.txt setf txt
 au FileType txt set tw=79
-au FileType tex set tw=79
 
+" Latex
+au BufNewFile,BufRead *.tex setf tex
+au FileType tex set tw=79
