@@ -39,6 +39,11 @@ set sidescrolloff=10
 set virtualedit=block,onemore
 set wildmenu
 
+" Turn off swap files
+set noswapfile
+set nobackup
+set nowb
+
 " set backupdir=~/.vim/tmp/backup//
 " set directory=~/.vim/tmp/swap//
 if version >= 703
