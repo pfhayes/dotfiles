@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+echo "Patrick doesn't use bash anymore, and this .bashrc is out of date."
+echo "Refer to .zshrc instead"
+
 PAGER=less
 EDITOR=vim
 
