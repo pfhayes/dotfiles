@@ -113,6 +113,11 @@ vnoremap : ;
 vnoremap < <gv
 vnoremap > >gv
 
+" Press w to word wrap a block
+  " Works by joining all lines, then appending a character, which triggers the
+  " word wrap, and then deletes the character
+vnoremap w JAx<Esc>x
+
 " Easier switching between splits
 map <C-j> <C-w>j
 map <C-k> <C-w>k
