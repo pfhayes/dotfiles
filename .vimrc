@@ -109,6 +109,10 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
+" Reselect a block after indent/outdent
+vnoremap < <gv
+vnoremap > >gv
+
 " Easier switching between splits
 map <C-j> <C-w>j
 map <C-k> <C-w>k
