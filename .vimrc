@@ -109,10 +109,6 @@ nnoremap : ;
 vnoremap ; :
 vnoremap : ;
 
-" Reselect a block after indent/outdent
-vnoremap < <gv
-vnoremap > >gv
-
 " Press w to word wrap a block
 vnoremap w gq
 
