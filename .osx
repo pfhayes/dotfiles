@@ -1,4 +1,4 @@
-# RUn this once when setting up a new mac!
+# Run this once when setting up a new mac!
 # Grabbed from http://github.com/mathiasbynens/dotfiles
 
 # Show remaining battery time; hide percentage
@@ -7,6 +7,9 @@ defaults write com.apple.menuextra.battery ShowTime -string "YES"
 
 # Show all filename extensions in Finder
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
 # Expand save/print panels by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -24,6 +27,9 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 0
 
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
@@ -36,6 +42,12 @@ defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 # Avoid creating .DS_Store files on network volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
+# Show item info below desktop icons
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+
+# Enable snap-to-grid for desktop icons
+/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
+
 # Empty Trash securely by default
 defaults write com.apple.finder EmptyTrashSecurely -bool true
 
@@ -45,5 +57,18 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 # Show the ~/Library folder
 chflags nohidden ~/Library
 
+# Use current directory as default search scope in Finder
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+
+# Show Path bar in Finder
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Show Status bar in Finder
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
 # Kill affected applications
 for app in Finder Dock SystemUIServer; do killall "$app" >/dev/null 2>&1; done
+
