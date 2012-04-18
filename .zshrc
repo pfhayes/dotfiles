@@ -1,12 +1,5 @@
 #!/bin/zsh
 
-# When we source this file, specify as the first argument the directory
-# containing other config files, so we can reference them
-CONFIG_DIR=$1
-if [ -n "$DIR" ]; then
-  CONFIG_DIR=~
-fi
-
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
@@ -129,11 +122,9 @@ if [ "$?" -eq 0 ]; then
 else
   alias ls='ls -G'
 fi
-if [ -n "$(whence dircolors)" ]; then
-  if [ -e "$CONFIG_DIR/.dircolors" ]; then
-    eval `dircolors -b $CONFIG_DIR/.dircolors`
-  fi
-fi
+
+# Generated from 'dircolors -b .dircolors'
+LS_COLORS='no=00:fi=00:di=00;34:ln=00;36:or=07;31:mi=07;31:pi=00;35:so=00;35:do=00;35:bd=00;35:cd=00;35:ex=00;31:';
 
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[5~" up-line-or-history
