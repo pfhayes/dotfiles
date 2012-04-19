@@ -124,7 +124,7 @@ else
 fi
 
 # Generated from 'dircolors -b .dircolors'
-LS_COLORS='no=00:fi=00:di=00;34:ln=00;36:or=07;31:mi=07;31:pi=00;35:so=00;35:do=00;35:bd=00;35:cd=00;35:ex=00;31:';
+export LS_COLORS='no=00:fi=00:di=00;34:ln=00;36:or=07;31:mi=07;31:pi=00;35:so=00;35:do=00;35:bd=00;35:cd=00;35:ex=00;31:';
 
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[5~" up-line-or-history

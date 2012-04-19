@@ -7,6 +7,9 @@
 # Background color codes:
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
 
+# Run `dircolors -b .dircolors` and dump the output in your .zshrc to get
+# colorized ls output whenever you run ls
+
 NORMAL  00
 FILE    00        # normal file
 DIR     00;34     # directory
