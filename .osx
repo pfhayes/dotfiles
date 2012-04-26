@@ -70,6 +70,9 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
+# Make Terminal start faser
+touch ~/.hushlogin
+
 # Kill affected applications
 for app in Finder Dock SystemUIServer; do killall "$app" >/dev/null 2>&1; done
 
