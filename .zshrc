@@ -110,7 +110,6 @@ alias ack='ack -i'
 alias f=finger
 alias grep='grep --color=auto'
 alias j=jobs
-alias ll='ls -al'
 alias man='LC_ALL=C LANG=C man'
 alias mkdir='mkdir -p'
 alias vim='vim -O'
