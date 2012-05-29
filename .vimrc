@@ -16,7 +16,6 @@ set ignorecase
 set smartcase
 set incsearch
 set lazyredraw
-set showbreak=↪
 set splitbelow
 set splitright
 set title
@@ -37,6 +36,9 @@ set sidescroll=1
 set sidescrolloff=10
 set virtualedit=block,onemore
 set wildmenu
+
+" Handles lines that are too big for the screen
+let &showbreak = '> '
 
 " Turn off swap files
 set noswapfile
