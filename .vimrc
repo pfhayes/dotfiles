@@ -1,5 +1,8 @@
 syntax on
 
+" plugins
+call pathogen#infect()
+
 " Some reasonable defaults
 set nocompatible
 set shell=zsh
