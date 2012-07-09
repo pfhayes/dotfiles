@@ -51,9 +51,9 @@ set nowb
 " set backupdir=~/.vim/tmp/backup//
 " set directory=~/.vim/tmp/swap//
 if version >= 703
-"  set undofile
-"  set undoreload=10000
-"  set undodir=~/.vim/tmp/undo//
+  set undofile
+  set undoreload=10000
+  set undodir=~/.vim/tmp/undo//
 endif
 
 " When you type a # character as the first character of a line,
