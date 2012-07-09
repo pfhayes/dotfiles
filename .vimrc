@@ -6,6 +6,8 @@ call pathogen#infect()
 filetype plugin indent on
 
 " Some reasonable defaults
+set modelines=0
+set hidden
 set nocompatible
 set shell=zsh
 set noerrorbells
@@ -20,6 +22,7 @@ set history=1000
 set ignorecase
 set smartcase
 set incsearch
+set gdefault
 set lazyredraw
 set splitbelow
 set splitright
@@ -41,6 +44,14 @@ set sidescroll=1
 set sidescrolloff=10
 set virtualedit=block,onemore
 set wildmenu
+set wildmode=list:longest
+
+let mapleader=","
+
+" Turn off help
+inoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+nnoremap <F1> <ESC>
 
 " Handles lines that are too big for the screen
 let &showbreak = '> '
