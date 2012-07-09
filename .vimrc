@@ -42,6 +42,7 @@ set wildmenu
 
 " Handles lines that are too big for the screen
 let &showbreak = '> '
+set cpo=n
 
 " Turn off swap files
 set noswapfile
