@@ -1,7 +1,9 @@
 syntax on
 
 " plugins
+filetype off
 call pathogen#infect()
+filetype plugin indent on
 
 " Some reasonable defaults
 set nocompatible
