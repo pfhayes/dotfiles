@@ -53,6 +53,16 @@ inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 
+" Be bold
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+
 " Handles lines that are too big for the screen
 let &showbreak = '> '
 set cpo=n
@@ -118,10 +128,10 @@ au VimResized * exe "normal! \<c-w>="
 " Improve scrolling when lines wrap around
 nnoremap <silent> k gk
 nnoremap <silent> j gj
-nnoremap <silent> <Up> gk
-nnoremap <silent> <Down> gj
-inoremap <silent> <Up> <Esc>gka
-inoremap <silent> <Down> <Esc>gja
+" nnoremap <silent> <Up> gk
+" nnoremap <silent> <Down> gj
+" inoremap <silent> <Up> <Esc>gka
+" inoremap <silent> <Down> <Esc>gja
 
 " Better regex search
 nnoremap / /\\v
