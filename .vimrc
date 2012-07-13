@@ -44,7 +44,7 @@ set sidescroll=1
 set sidescrolloff=10
 set virtualedit=block,onemore
 set wildmenu
-set wildmode=list:longest
+set wildmode=longest,list:longest
 
 let mapleader=","
 
@@ -69,6 +69,11 @@ if version >= 703
   set undoreload=10000
   set undodir=~/.vim/tmp/undo//
 endif
+
+" Trying to use tab completion
+set complete=.,b,u,]
+inoremap <Tab> <C-P>
+inoremap <C-Tab> <C-X> <C-L>
 
 " When you type a # character as the first character of a line,
 " it pushes that to the first column. This fixes that issue
