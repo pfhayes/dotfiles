@@ -72,6 +72,10 @@ set complete=.,b,u,]
 imap <Leader><Tab> <C-P>
 inoremap <C-Tab> <C-X> <C-L>
 
+" Ctrl-P plugin
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
 " Handles lines that are too big for the screen
 let &showbreak = '> '
 set cpo=n
@@ -88,11 +92,6 @@ if version >= 703
   set undoreload=10000
   set undodir=~/.vim/tmp/undo//
 endif
-
-" Trying to use tab completion
-set complete=.,b,u,]
-inoremap <Tab> <C-P>
-inoremap <C-Tab> <C-X> <C-L>
 
 " When you type a # character as the first character of a line,
 " it pushes that to the first column. This fixes that issue
