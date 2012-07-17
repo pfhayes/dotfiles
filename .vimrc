@@ -67,6 +67,11 @@ inoremap <Right> <nop>
 autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" Trying to use completion
+set complete=.,b,u,]
+imap <Leader><Tab> <C-P>
+inoremap <C-Tab> <C-X> <C-L>
+
 " Handles lines that are too big for the screen
 let &showbreak = '> '
 set cpo=n
