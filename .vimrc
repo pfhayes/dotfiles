@@ -53,6 +53,9 @@ inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 
+" Fixing delay sometimes when using O
+set noesckeys
+
 " Be bold
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
