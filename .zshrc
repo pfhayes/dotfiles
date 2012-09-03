@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+setopt NO_BEEP
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY

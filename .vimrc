@@ -53,18 +53,12 @@ inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 
+" jj to esc
+inoremap jj <Esc>
+cnoremap jj <C-c>
+
 " Fixing delay sometimes when using O
 set noesckeys
-
-" Be bold
-nnoremap <Up> <nop>
-nnoremap <Down> <nop>
-nnoremap <Left> <nop>
-nnoremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
 
 " NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
@@ -139,10 +133,10 @@ au VimResized * exe "normal! \<c-w>="
 " Improve scrolling when lines wrap around
 nnoremap <silent> k gk
 nnoremap <silent> j gj
-" nnoremap <silent> <Up> gk
-" nnoremap <silent> <Down> gj
-" inoremap <silent> <Up> <Esc>gka
-" inoremap <silent> <Down> <Esc>gja
+nnoremap <silent> <Up> gk
+nnoremap <silent> <Down> gj
+inoremap <silent> <Up> <Esc>gka
+inoremap <silent> <Down> <Esc>gja
 
 " Better regex search
 nnoremap / /\\v
@@ -158,14 +152,13 @@ vnoremap : ;
 vnoremap w gq
 
 " Easier switching between splits
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-map <C-h> <C-w>h 
 map <C-Down> <C-w>j
 map <C-Up> <C-w>k
 map <C-Right> <C-w>l
 map <C-Left> <C-w>h
+
+noremap <C-j> <C-d>
+noremap <C-k> <C-u>
 
 " Splits the current line at current position
 nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
