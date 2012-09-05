@@ -9,8 +9,8 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY   # puts timestamps in the history
 
-setopt CORRECT            # command correction
-setopt CORRECT_ALL        # correct all arguments in a line
+setopt NOCORRECT            # command correction
+setopt NOCORRECT_ALL        # correct all arguments in a line
 setopt AUTO_LIST          # list menu on ambiguous expansion
 setopt REC_EXACT          # recognize exact matches, even if ambiguous
 
@@ -99,9 +99,9 @@ print_git_branch() {
 #   - warns me with red text if running as root
 PS1='[\
 %(0?.. $PR_RED%?$PR_NO_COLOR )\
-%(!.$PR_RED.$PR_CYAN)%n$PR_NO_COLOR$PR_CYAN@%m$PR_NO_COLOR:\
+%(!.$PR_RED.$PR_BLUE)%n$PR_NO_COLOR:\
 $(print_git_branch)\
-$PR_BLUE%~$PR_NO_COLOR\
+$PR_CYAN%~$PR_NO_COLOR\
 ]%(!.#.$) '
 RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
 

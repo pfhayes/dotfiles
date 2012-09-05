@@ -1,14 +1,13 @@
-[user]
-	name = Patrick Hayes
-	email = pfhayes@gmail.com
 [core]
   editor = vim
+	ignorecase = false
 [alias]
   br = branch
   ci = commit
   co = checkout
-  df = diff
-  dif = diff
+  df = diff -b
+  dif = diff -b
+  diff = diff -b
   sh = show
   st = status
 [color]
@@ -29,5 +28,10 @@
   added = green bold
   changed = cyan bold
   untracked = white bold
-
-
+[branch "master"]
+	rebase = true
+[branch]
+	autosetuprebase = always
+[alias]
+  done = !bin/git-done.py
+  p = !bin/git-push.py

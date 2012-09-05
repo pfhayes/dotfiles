@@ -6,6 +6,7 @@ call pathogen#infect()
 filetype plugin indent on
 
 " Some reasonable defaults
+set cursorline
 set modelines=0
 set hidden
 set nocompatible
@@ -45,6 +46,7 @@ set sidescrolloff=10
 set virtualedit=block,onemore
 set wildmenu
 set wildmode=longest,list:longest
+set endofline
 
 let mapleader=","
 
@@ -53,16 +55,22 @@ inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 
-" jj to esc
-inoremap jj <Esc>
-cnoremap jj <C-c>
+" Highlight current line
+autocmd WinEnter * setlocal cursorline
+autocmd WinLeave * setlocal nocursorline
+
+" jk to esc
+inoremap jk <Esc>
+cnoremap jk <C-c>
+inoremap jjk <Esc>
+cnoremap jjk <C-c>
 
 " Fixing delay sometimes when using O
 set noesckeys
 
 " NERDTree
-autocmd vimenter * if !argc() | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"autocmd vimenter * if !argc() | NERDTree | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Trying to use completion
 set complete=.,b,u,]
@@ -72,6 +80,13 @@ inoremap <C-Tab> <C-X> <C-L>
 " Ctrl-P plugin
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.class$',
+  \ }
+let g:ctrlp_regexp = 1
+let g:ctrlp_max_depth = 40
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 
 " Handles lines that are too big for the screen
 let &showbreak = '> '
@@ -111,8 +126,9 @@ cmap w!! %!sudo tee > /dev/null %
 map n nzz
 map N Nzz
 
-" Clear search patterns after hitting enter
+" Clear search patterns after hitting enter/space
 nnoremap <CR> :noh<CR><CR>
+nnoremap <space> :noh<CR><space>
 " Clear search patterns when entering insert mode
 nnoremap i :noh<CR>i
 nnoremap I :noh<CR>I
@@ -157,6 +173,7 @@ map <C-Up> <C-w>k
 map <C-Right> <C-w>l
 map <C-Left> <C-w>h
 
+" Scroll up/down with C-j, C-k instead of C-u, C-d
 noremap <C-j> <C-d>
 noremap <C-k> <C-u>
 
@@ -181,6 +198,7 @@ nnoremap gw :call Website()<CR><CR>
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
 au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
 au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
+au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
 au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 
 " When you write a file, make sure no lines end in whitespace
