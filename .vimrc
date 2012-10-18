@@ -62,8 +62,6 @@ autocmd WinLeave * setlocal nocursorline
 " jk to esc
 inoremap jk <Esc>
 cnoremap jk <C-c>
-inoremap jjk <Esc>
-cnoremap jjk <C-c>
 
 " Fixing delay sometimes when using O
 set noesckeys
