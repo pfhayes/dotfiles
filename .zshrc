@@ -108,11 +108,13 @@ RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
 unsetopt ALL_EXPORT
 
 alias ack='ack -i'
+alias codemod='codemod -a -g'
 alias f=finger
 alias grep='grep --color=auto'
 alias j=jobs
 alias man='LC_ALL=C LANG=C man'
 alias mkdir='mkdir -p'
+alias shorten="shorten $BIN_HOME/private/shorten_credentials"
 alias vim='vim -O'
 
 # colorizing ls output is different on different platforms
