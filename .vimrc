@@ -66,10 +66,6 @@ cnoremap jk <C-c>
 " Fixing delay sometimes when using O
 set noesckeys
 
-" NERDTree
-"autocmd vimenter * if !argc() | NERDTree | endif
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
 " Trying to use completion
 set complete=.,b,u,]
 imap <Leader><Tab> <C-P>
@@ -95,8 +91,6 @@ set noswapfile
 set nobackup
 set nowb
 
-" set backupdir=~/.vimtmp/tmp/backup//
-" set directory=~/.vimtmp/tmp/swap//
 if version >= 703
   set undofile
   set undoreload=10000
@@ -127,6 +121,7 @@ map N Nzz
 " Clear search patterns after hitting enter/space
 nnoremap <CR> :noh<CR><CR>
 nnoremap <space> :noh<CR><space>
+
 " Clear search patterns when entering insert mode
 nnoremap i :noh<CR>i
 nnoremap I :noh<CR>I
@@ -137,9 +132,6 @@ nnoremap O :noh<CR>O
 nnoremap s :noh<CR>s
 nnoremap S :noh<CR>S
 nnoremap R :noh<CR>R
-
-" Status line
-set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 
 " When the window is resized, fix splits
 au VimResized * exe "normal! \<c-w>="
@@ -200,9 +192,7 @@ au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
 au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 
 " When you write a file, make sure no lines end in whitespace
-autocmd BufWritePre *.cc :%s/\s\+$//e
-autocmd BufWritePre *.h :%s/\s\+$//e
-autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " For writing text
 au BufNewFile,BufRead *.txt setf txt
