@@ -157,6 +157,10 @@ vnoremap : ;
 " Press w to word wrap a block
 vnoremap w gq
 
+" I hate when u lowercases text in visual mode
+" Also I want to comment/uncomment blocks of code
+vnoremap u ,ci
+
 " Easier switching between splits
 map <C-Down> <C-w>j
 map <C-Up> <C-w>k
