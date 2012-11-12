@@ -28,8 +28,6 @@
   added = green bold
   changed = cyan bold
   untracked = white bold
-[branch "master"]
-	rebase = true
 [branch]
 	autosetuprebase = always
 [alias]
