@@ -110,6 +110,8 @@ unsetopt ALL_EXPORT
 alias ack='ack -i'
 alias codemod='codemod -a -g'
 alias f=finger
+alias gcm='git ci -a -m'
+alias gg='git grep'
 alias grep='grep --color=auto'
 alias j=jobs
 alias man='LC_ALL=C LANG=C man'
