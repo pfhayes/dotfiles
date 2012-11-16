@@ -4,7 +4,7 @@ setopt NO_BEEP
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
-setopt HIST_ALLOW_CLOBBER 
+setopt HIST_ALLOW_CLOBBER
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt EXTENDED_HISTORY   # puts timestamps in the history
@@ -110,6 +110,7 @@ unsetopt ALL_EXPORT
 alias ack='ack -i'
 alias codemod='codemod -a -g'
 alias f=finger
+alias gcaa='git ci -a --amend -C HEAD'
 alias gcm='git ci -a -m'
 alias gg='git grep'
 alias grep='grep --color=auto'
@@ -173,7 +174,7 @@ zstyle ':completion:*::::' completer _expand _complete _ignored #_approximate
   # this is so annoying
 #zstyle -e ':completion:*:approximate:*' max-errors \
 #    'reply=( $(( ($#PREFIX+$#SUFFIX)/2 )) numeric )'
-    
+
 # insert all expansions for expand completer
 zstyle ':completion:*:expand:*' tag-order all-expansions
 
@@ -181,7 +182,7 @@ zstyle ':completion:*:expand:*' tag-order all-expansions
 # 1. All /etc/hosts hostnames are in autocomplete
 # 2. If you have a comment in /etc/hosts like #%foobar.domain,
 #    then foobar.domain will show up in autocomplete!
-zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}') 
+zstyle ':completion:*' hosts $(awk '/^[^#]/ {print $2 $3" "$4" "$5}' /etc/hosts | grep -v ip6- && grep "^#%" /etc/hosts | awk -F% '{print $2}')
 # formatting and messages
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*:descriptions' format '%B%d%b'
