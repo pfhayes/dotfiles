@@ -72,8 +72,15 @@ imap <Leader><Tab> <C-P>
 inoremap <C-Tab> <C-X> <C-L>
 
 " Ctrl-P plugin
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+if has("ruby")
+  nnoremap <silent> <c-p> :CommandT<CR>
+  let g:CommandTMaxFiles = 40000
+  let g:ctrlp_map = '<c-Q>'
+  let g:ctrlp_cmd = 'CtrlQ'
+else
+  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_cmd = 'CtrlP'
+endif
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|\.hg$\|\.svn$',
   \ 'file': '\.class$',
