@@ -144,10 +144,6 @@ nnoremap <silent> <Down> gj
 inoremap <silent> <Up> <Esc>gka
 inoremap <silent> <Down> <Esc>gja
 
-" Better regex search
-nnoremap / /\\v
-vnoremap / /\\v
-
 " Swap ; and : outside of insert mode
 nnoremap ; :
 nnoremap : ;
