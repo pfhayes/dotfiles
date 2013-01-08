@@ -75,6 +75,7 @@ inoremap <C-Tab> <C-X> <C-L>
 if has("ruby")
   nnoremap <silent> <c-p> :CommandT<CR>
   let g:CommandTMaxFiles = 40000
+  let g:CommandTUseGitLsFiles = 1
   let g:ctrlp_map = '<c-Q>'
   let g:ctrlp_cmd = 'CtrlQ'
 else
