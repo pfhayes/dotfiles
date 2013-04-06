@@ -175,6 +175,12 @@ map <C-Left> <C-w>h
 noremap <C-j> <C-d>
 noremap <C-k> <C-u>
 
+" Buffers
+nnoremap <C-e> :b#<CR>
+nnoremap <C-i> :bnext<CR>
+nnoremap <C-o> :bprev<CR>
+nnoremap <C-n> :bd<CR>
+
 " Splits the current line at current position
 nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 
