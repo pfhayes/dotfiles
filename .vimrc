@@ -119,6 +119,9 @@ match ErrorMsg '\%>80v.\+'
 " Highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+" Don't highlight the sign column (it looks terrible in dark displays)
+highlight clear SignColumn
+
 " Use :w!! to save with sudo
 cmap w!! %!sudo tee > /dev/null %
 
