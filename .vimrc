@@ -198,6 +198,11 @@ function! Website ()
 endfunction
 nnoremap gw :call Website()<CR><CR>
 
+" Keep files fresh
+:au WinEnter * checktime
+:au CursorHold * checktime
+set updatetime=1000
+
 " When you create a new file, fills in some code for you
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
 au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
