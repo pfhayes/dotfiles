@@ -3,7 +3,7 @@
 	ignorecase = false
 [alias]
   br = branch
-  ci = commit
+  ci = commit -v
   co = checkout
   df = diff -b
   dif = diff -b
