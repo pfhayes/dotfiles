@@ -10,6 +10,8 @@
   diff = diff -b
   sh = show
   st = status
+[diff]
+  algorithm = patience
 [color]
   branch = auto
   diff = auto
