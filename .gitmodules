@@ -13,3 +13,6 @@
 [submodule ".vim/bundle/command-t"]
 	path = .vim/bundle/command-t
 	url = git@github.com:pfhayes/Command-T.git
+[submodule ".vim/bundle/thrift"]
+	path = .vim/bundle/thrift
+	url = git://github.com/theevocater/thrift.vim.git
