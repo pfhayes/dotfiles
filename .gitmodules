@@ -16,3 +16,6 @@
 [submodule ".vim/bundle/thrift"]
 	path = .vim/bundle/thrift
 	url = git://github.com/theevocater/thrift.vim.git
+[submodule ".zsh/plugins/zsh-syntax-highlighting"]
+	path = .zsh/plugins/zsh-syntax-highlighting
+	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
