@@ -119,6 +119,7 @@ alias man='LC_ALL=C LANG=C man'
 alias mkdir='mkdir -p'
 alias shorten="shorten $BIN_HOME/private/shorten_credentials"
 alias vim='vim -O'
+alias vit='vim -t'
 
 # colorizing ls output is different on different platforms
 ls --color=auto >/dev/null 2>/dev/null
