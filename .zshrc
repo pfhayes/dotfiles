@@ -63,6 +63,12 @@ bwhich() {
 }
 alias which='bwhich'
 
+# blame
+gbp() {
+  FILE="$(pop $1)"
+  git blame $FILE
+}
+
 # colors
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
