@@ -206,7 +206,11 @@ nnoremap gw :call Website()<CR><CR>
 :au CursorHold * checktime
 set updatetime=1000
 
-"
+" Scala stuff
+" Indent function signatures. Gross
+nmap <Leader>. ?def<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\_[ \\r]*/(\\r/<CR>vi(;s/,\\_[ \\r]*/,\\r/<CR>vi(10<vi(2>?(<CR>%i<CR><Esc><CR>
+
+" scala syntax checking is sloooooow
 let g:syntastic_scala_checkers=[]
 
 " When you create a new file, fills in some code for you
