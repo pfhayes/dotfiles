@@ -27,4 +27,4 @@
 
 --langdef=soy
 --langmap=soy:.soy
---regex-soy=/^[ \t]*template[ \t]+\.([a-zA-Z0-9_]+)/\1/t,templates/
+--regex-soy=/^[ \t]*{template[ \t]+\.([a-zA-Z0-9_]+)/\1/t,templates/
