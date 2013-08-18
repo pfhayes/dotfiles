@@ -97,6 +97,14 @@ print_git_branch() {
   fi
 }
 
+prompt_hostname() {
+  if [ -n "${SSH_CONNECTION}" ]; then
+    echo '$PR_NO_COLOR@$PR_WHITE%m'
+  else
+    echo ''
+  fi
+}
+
 # prompt
 #   - if the previous command returned nonzero, show that
 #   - show the user name @ hostname
@@ -105,7 +113,7 @@ print_git_branch() {
 #   - warns me with red text if running as root
 PS1='[\
 %(0?.. $PR_RED%?$PR_NO_COLOR )\
-%(!.$PR_RED.$PR_BLUE)%n$PR_NO_COLOR:\
+%(!.$PR_RED.$PR_BLUE)%n$(prompt_hostname)$PR_NO_COLOR:\
 $(print_git_branch)\
 $PR_CYAN%~$PR_NO_COLOR\
 ]%(!.#.$) '
@@ -113,12 +121,20 @@ RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
 
 unsetopt ALL_EXPORT
 
+function gg {
+  ARG=$@
+  git submodule foreach "git grep \"{$ARG}\"; true"
+  git grep $ARG
+  true
+}
+
 alias ack='ack -i'
 alias codemod='codemod -a -g'
+alias control="control $BIN_HOME/private/shorten_credentials"
 alias f=finger
+alias ff='find . | xargs grep'
 alias gcaa='git ci -a --amend -C HEAD'
 alias gcm='git ci -a -m'
-alias gg='git grep'
 alias grep='grep --color=auto'
 alias j=jobs
 alias man='LC_ALL=C LANG=C man'

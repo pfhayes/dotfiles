@@ -76,6 +76,7 @@ if has("ruby")
   nnoremap <silent> <c-p> :CommandT<CR>
   let g:CommandTMaxFiles = 40000
   let g:CommandTUseGitLsFiles = 1
+  let g:CommandTMaxHeight = 10
   let g:ctrlp_map = '<c-Q>'
   let g:ctrlp_cmd = 'CtrlQ'
 else
@@ -157,9 +158,9 @@ inoremap <silent> <Down> <Esc>gja
 
 " Swap ; and : outside of insert mode
 nnoremap ; :
-nnoremap : ;
+" nnoremap : ;
 vnoremap ; :
-vnoremap : ;
+" vnoremap : ;
 
 " Press w to word wrap a block
 vnoremap w gq
@@ -206,9 +207,13 @@ nnoremap gw :call Website()<CR><CR>
 :au CursorHold * checktime
 set updatetime=1000
 
+" Yank to OSX keyboard with ,y
+vmap <Leader>y "*y
+nmap <Leader>y "*Y
+
 " Scala stuff
 " Indent function signatures. Gross
-nmap <Leader>. ?def<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\_[ \\r]*/(\\r/<CR>vi(;s/,\\_[ \\r]*/,\\r/<CR>vi(10<vi(2>?(<CR>%i<CR><Esc><CR>
+nmap <Leader>. ?def\\\\|class<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\_[ \\r]*/(\\r/<CR>vi(;s/,\\_[ \\r]*/,\\r/<CR>vi(10<vi(3>?(<CR>%i<CR><Esc><CR>
 
 " scala syntax checking is sloooooow
 let g:syntastic_scala_checkers=[]
@@ -221,7 +226,9 @@ au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
 au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 
 " When you write a file, make sure no lines end in whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+au FileType scala autocmd BufWritePre * :%s/\s\+$//e
+au FileType py autocmd BufWritePre * :%s/\s\+$//e
+au FileType java autocmd BufWritePre * :%s/\s\+$//e
 
 " Scala
 au BufNewFile,BufRead *.scala setf scala
