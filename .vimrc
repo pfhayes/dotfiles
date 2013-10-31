@@ -228,7 +228,6 @@ au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 " When you write a file, make sure no lines end in whitespace
 au FileType scala autocmd BufWritePre * :%s/\s\+$//e
 au FileType py autocmd BufWritePre * :%s/\s\+$//e
-au FileType java autocmd BufWritePre * :%s/\s\+$//e
 
 " Scala
 au BufNewFile,BufRead *.scala setf scala
