@@ -216,10 +216,12 @@ nmap <Leader>y "*Y
 
 " Scala stuff
 " Indent function signatures. Gross
-nmap <Leader>. ?def\\\\|class<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\_[ \\r]*/(\\r/<CR>vi(;s/,\\_[ \\r]*/,\\r/<CR>vi(10<vi(3>?(<CR>%i<CR><Esc><CR>
+nmap <Leader>. ?def\\\\|class<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\_[ \\r]*/(\\r/<CR>vi(;s/,\\_[ \\r]*/,\\r/<CR>vi(10<vi(2>?(<CR>%i<CR><Esc><CR>
 
 " scala syntax checking is sloooooow
 let g:syntastic_scala_checkers=[]
+let g:syntastic_go_checkers=[]
+let g:syntastic_python_checkers=[]
 
 " When you create a new file, fills in some code for you
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
