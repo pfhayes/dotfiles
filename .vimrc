@@ -71,6 +71,9 @@ set complete=.,b,u,]
 imap <Leader><Tab> <C-P>
 inoremap <C-Tab> <C-X> <C-L>
 
+" Automatically `set paste` when pasting text on OS X
+imap <D-v> ^O:set paste<Enter>^R+^O:set nopaste<Enter>
+
 " Ctrl-P plugin
 if has("ruby")
   nnoremap <silent> <c-p> :CommandT<CR>
