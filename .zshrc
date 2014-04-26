@@ -156,24 +156,12 @@ fi
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[5~" up-line-or-history
 bindkey "^[[6~" down-line-or-history
-bindkey "^[[H" beginning-of-line
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[F"  end-of-line
-bindkey "^[[4~" end-of-line
 bindkey ' ' magic-space    # also do history expansion on space
-bindkey '^I' complete-word # complete on tab, leave expansion to _expand
 
 # Use the prefix of what you have typed already to search backwards when
 # pressing up/down to navigate history
 bindkey "\e[A" history-search-backward
 bindkey "\e[B" history-search-forward
-
-# map caps lock to escape - this will make you way more productive
-# in VIM - but prevents you from using caps lock
-#CAPS="$(eval "xmodmap -pke | grep 'Caps'")"
-#if [ -n "$CAPS" ]; then
-#  xmodmap ~/.speedswapper
-#fi
 
 # completion wizardry
 zstyle ':completion::complete:*' use-cache on
@@ -239,4 +227,3 @@ zstyle '*' single-ignored show
 # Plugins
 
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
