@@ -123,9 +123,8 @@ RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
 unsetopt ALL_EXPORT
 
 function gg {
-  ARG=$@
-  git submodule foreach "git grep \"{$ARG}\"; true"
-  git grep $ARG
+  git submodule foreach "git grep \"$@\"; true"
+  git grep $@
   true
 }
 
