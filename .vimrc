@@ -152,12 +152,12 @@ nnoremap R :noh<CR>R
 au VimResized * exe "normal! \<c-w>="
 
 " Improve scrolling when lines wrap around
-nnoremap <silent> k gk
-nnoremap <silent> j gj
-nnoremap <silent> <Up> gk
-nnoremap <silent> <Down> gj
-inoremap <silent> <Up> <Esc>gka
-inoremap <silent> <Down> <Esc>gja
+" nnoremap <silent> k gk
+" nnoremap <silent> j gj
+" nnoremap <silent> <Up> gk
+" nnoremap <silent> <Down> gj
+" inoremap <silent> <Up> <Esc>gka
+" inoremap <silent> <Down> <Esc>gja
 
 " Swap ; and : outside of insert mode
 nnoremap ; :
