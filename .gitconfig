@@ -36,3 +36,4 @@
   enabled = true
 [alias]
   l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lsc = diff-tree --no-commit-id --name-only -r
