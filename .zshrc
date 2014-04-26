@@ -128,13 +128,10 @@ function gg {
   true
 }
 
-alias ack='ack -i'
 alias codemod='codemod -a -g'
-alias control="control $BIN_HOME/private/shorten_credentials"
-alias f=finger
-alias ff='find . | xargs grep'
+alias ff='find . | xargs grep 2>/dev/null'
 alias gcaa='git ci -a --amend -C HEAD'
-alias gcm='git ci -a -m'
+alias glm='git l --author patrick'
 alias grep='grep --color=auto'
 alias j=jobs
 alias man='LC_ALL=C LANG=C man'
