@@ -240,9 +240,16 @@ au FileType scala set tw=119
 au BufNewFile,BufRead *.java setf java
 au FileType java set tw=119
 
+au BufNewFile,BufRead *.html setf html
+au FileType html set tw=119
+au BufNewFile,BufRead *.soy setf soy
+au FileType soy set tw=119
+
 " For writing text
 au BufNewFile,BufRead *.txt setf txt
 au FileType txt set tw=79
+au BufNewFile,BufRead *.md setf md
+" au FileType md set tw=119
 
 " Latex
 au BufNewFile,BufRead *.tex setf tex
