@@ -50,6 +50,9 @@ set endofline
 
 let mapleader=","
 
+" Remove intro
+set shortmess+=I
+
 " Turn off help
 inoremap <F1> <ESC>
 vnoremap <F1> <ESC>
@@ -74,12 +77,17 @@ inoremap <C-Tab> <C-X> <C-L>
 " Automatically `set paste` when pasting text on OS X
 imap <D-v> ^O:set paste<Enter>^R+^O:set nopaste<Enter>
 
+" keystroke to toggle paste
+nmap <silent> <leader>p :set paste!<CR>
+
 " Ctrl-P plugin
 if has("ruby")
   nnoremap <silent> <c-p> :CommandT<CR>
   let g:CommandTMaxFiles = 40000
   let g:CommandTUseGitLsFiles = 1
+  let g:CommandTFileScanner = 'git'
   let g:CommandTMaxHeight = 10
+  let g:CommandTWildIgnore = ''
   let g:ctrlp_map = '<c-Q>'
   let g:ctrlp_cmd = 'CtrlQ'
 else
@@ -95,7 +103,7 @@ let g:ctrlp_max_depth = 40
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 
 " Handles lines that are too big for the screen
-let &showbreak = '> '
+" let &showbreak = '> '
 set cpo=n
 
 " Turn off swap files
@@ -219,6 +227,7 @@ nmap <Leader>y "*Y
 nmap <Leader>. ?def\\\\|class<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\_[ \\r]*/(\\r/<CR>vi(;s/,\\_[ \\r]*/,\\r/<CR>vi(10<vi(2>?(<CR>%i<CR><Esc><CR>
 
 " scala syntax checking is sloooooow
+let g:syntastic_java_checkers=[]
 let g:syntastic_scala_checkers=[]
 let g:syntastic_go_checkers=[]
 let g:syntastic_python_checkers=[]
@@ -226,13 +235,14 @@ let g:syntastic_python_checkers=[]
 " When you create a new file, fills in some code for you
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
 au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
-au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
+au BufNewFile __init__.py 0r ~/.vim/skeletons/skeleton.pyinit
+" au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
 au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
 au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 
 " When you write a file, make sure no lines end in whitespace
 au FileType scala autocmd BufWritePre * :%s/\s\+$//e
-au FileType py autocmd BufWritePre * :%s/\s\+$//e
+au FileType python autocmd BufWritePre * :%s/\s\+$//e
 
 " Scala
 au BufNewFile,BufRead *.scala setf scala
@@ -244,12 +254,14 @@ au BufNewFile,BufRead *.html setf html
 au FileType html set tw=119
 au BufNewFile,BufRead *.soy setf soy
 au FileType soy set tw=119
+au BufNewFile,BufRead *.py setf python
+au FileType python set tw=119
 
 " For writing text
 au BufNewFile,BufRead *.txt setf txt
 au FileType txt set tw=79
 au BufNewFile,BufRead *.md setf md
-" au FileType md set tw=119
+au FileType md set tw=119
 
 " Latex
 au BufNewFile,BufRead *.tex setf tex
