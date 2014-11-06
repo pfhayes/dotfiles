@@ -26,6 +26,8 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 0
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -66,6 +68,9 @@ defaults write com.apple.finder ShowPathbar -bool true
 
 # Show Status bar in Finder
 defaults write com.apple.finder ShowStatusBar -bool true
+
+# Enable quitting Finder
+defaults write com.apple.finder QuitMenuItem -bool YES
 
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
