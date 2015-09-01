@@ -43,8 +43,8 @@ autoload -Uz compinit && compinit
 setopt ALL_EXPORT         # export declared variables
 
 HISTFILE=$HOME/.zhistory
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HOSTNAME="$(hostname)"
 PAGER='less'
 EDITOR='vim'
@@ -112,12 +112,12 @@ prompt_hostname() {
 #   - shows the git branch, if any
 #   - shows the current directory
 #   - warns me with red text if running as root
-PS1='[\
-%(0?.. $PR_RED%?$PR_NO_COLOR )\
-%(!.$PR_RED.$PR_BLUE)%n$(prompt_hostname)$PR_NO_COLOR:\
-$(print_git_branch)\
-$PR_CYAN%~$PR_NO_COLOR\
-]%(!.#.$) '
+PS1='['
+PS1+='%(0?.. $PR_RED%?$PR_NO_COLOR )'
+# PS1+='%(!.$PR_RED.$PR_BLUE)%n$(prompt_hostname)$PR_NO_COLOR:'
+PS1+='$(print_git_branch)'
+PS1+='$PR_CYAN%~$PR_NO_COLOR'
+PS1+='] '
 RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
 
 unsetopt ALL_EXPORT
@@ -152,6 +152,23 @@ else
   alias ll='ls -G -Alh'
   export LSCOLORS='exgxfxfxbxfxfxababacac'
 fi
+
+# pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi
+
+# ctrl-z toggles vim
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
 
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[5~" up-line-or-history
@@ -225,5 +242,4 @@ zstyle ':completion:*:ssh:*' group-order \
 zstyle '*' single-ignored show
 
 # Plugins
-
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
