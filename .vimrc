@@ -47,6 +47,7 @@ set virtualedit=block,onemore
 set wildmenu
 set wildmode=longest,list:longest
 set endofline
+set tags=tags;
 
 let mapleader=","
 
@@ -67,12 +68,24 @@ inoremap jk <Esc>
 cnoremap jk <C-c>
 
 " Fixing delay sometimes when using O
-set noesckeys
+" set noesckeys
 
 " Trying to use completion
 set complete=.,b,u,]
 imap <Leader><Tab> <C-P>
 inoremap <C-Tab> <C-X> <C-L>
+
+" Region expand
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" Jump to end after paste
+vnoremap <silent> y y`]^
+vnoremap <silent> p p`]^
+nnoremap <silent> p p`]^
+
+" stop dumb history window
+map q: :q
 
 " Automatically `set paste` when pasting text on OS X
 imap <D-v> ^O:set paste<Enter>^R+^O:set nopaste<Enter>
@@ -202,6 +215,29 @@ nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 " Better MatchParen
 :hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
+" Rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
 " Use gw to open webpages. Only works in OS X right now
 function! Website ()
   let s:url = expand("<cWORD>")
@@ -241,8 +277,16 @@ au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
 au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 
 " When you write a file, make sure no lines end in whitespace
+au FileType java autocmd BufWritePre * :%s/\s\+$//e
 au FileType scala autocmd BufWritePre * :%s/\s\+$//e
 au FileType python autocmd BufWritePre * :%s/\s\+$//e
+
+" In python, make sure no trailing whitespace lines
+au FileType python autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##e
+
+"
+nmap <Leader>a [%
+nmap <Leader>s ]%
 
 " Scala
 au BufNewFile,BufRead *.scala setf scala
