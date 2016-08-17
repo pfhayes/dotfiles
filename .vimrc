@@ -269,9 +269,29 @@ nmap <Leader>. ?def\\\\|class<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\
 
 " scala syntax checking is sloooooow
 let g:syntastic_java_checkers=[]
+let g:syntastic_cpp_checkers=[]
 let g:syntastic_scala_checkers=[]
 let g:syntastic_go_checkers=[]
-let g:syntastic_python_checkers=[]
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E129,E127,E302,E131,E111,E114,E121,E501,E126,E123,I101,I100,N806,F403,E241,E731,F999,F401,D100,D101,D102,F405'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+"function! QuitPrompt()
+    "write
+    "SyntasticCheck
+    "if exists('b:syntastic_loclist') && !empty(b:syntastic_loclist) && b:syntastic_loclist.isEmpty()
+        "quit
+    "endif
+"endfunction
+"cabbrev wq :call QuitPrompt()<CR>
 
 " When you create a new file, fills in some code for you
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
