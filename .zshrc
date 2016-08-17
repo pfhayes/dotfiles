@@ -35,6 +35,9 @@ setopt NOCLOBBER          # can't clobber existing files
 setopt MULTIOS            # allows multiple redirection of output
 setopt CDABLE_VARS        # if var holds a directory, then cd var works
 
+# Enables Ctrl-S for forward history search
+stty -ixon
+
 # Autoload zsh modules when they are referenced
 zmodload -a zsh/stat stat
 autoload -Uz zcalc zmv
