@@ -125,11 +125,12 @@ RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
 
 unsetopt ALL_EXPORT
 
-function gg {
-  git submodule foreach "git grep \"$@\"; true"
-  git grep $@
-  true
-}
+alias gg="git grep"
+#function gg {
+  #git submodule foreach "git grep \"$@\"; true"
+  #git grep $@
+  #true
+#}
 
 alias codemod='codemod -a -g'
 alias ff='find . | xargs grep 2>/dev/null'
