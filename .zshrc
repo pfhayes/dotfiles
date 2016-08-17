@@ -46,8 +46,8 @@ autoload -Uz compinit && compinit
 setopt ALL_EXPORT         # export declared variables
 
 HISTFILE=$HOME/.zhistory
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HOSTNAME="$(hostname)"
 PAGER='less'
 EDITOR='vim'
