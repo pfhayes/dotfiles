@@ -135,8 +135,13 @@ endif
 inoremap # X<BS>#
 
 " If any literal tabs make their way into your files, highlight them
-syn match tab display "\t"
-hi link tab Error
+highlight LiteralTabs ctermbg=darkcyan guibg=darkcyan
+match LiteralTabs /\t\+/
+au FileType python autocmd BufWinEnter * match LiteralTabs /\t\+/
+au FileType python autocmd InsertEnter * match LiteralTabs /\t\+\%#\@<!/
+au FileType python autocmd InsertLeave * match LiteralTabs /\t\+/
+au FileType python autocmd BufWinLeave * call clearmatches()
+
 
 " Highlight lines over 80 characters
 match ErrorMsg '\%>80v.\+'
