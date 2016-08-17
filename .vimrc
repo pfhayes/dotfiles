@@ -302,12 +302,10 @@ au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
 au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 
 " When you write a file, make sure no lines end in whitespace
+au FileType cpp autocmd BufWritePre * :%s/\s\+$//e
 au FileType java autocmd BufWritePre * :%s/\s\+$//e
 au FileType scala autocmd BufWritePre * :%s/\s\+$//e
 au FileType python autocmd BufWritePre * :%s/\s\+$//e
-
-" In python, make sure no trailing whitespace lines
-au FileType python autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##e
 
 "
 nmap <Leader>a [%
@@ -315,15 +313,16 @@ nmap <Leader>s ]%
 
 " Scala
 au BufNewFile,BufRead *.scala setf scala
-au FileType scala set tw=119
 au BufNewFile,BufRead *.java setf java
-au FileType java set tw=119
-
 au BufNewFile,BufRead *.html setf html
-au FileType html set tw=119
 au BufNewFile,BufRead *.soy setf soy
-au FileType soy set tw=119
 au BufNewFile,BufRead *.py setf python
+au BufNewFile,BufRead BUILD setf python
+
+au FileType scala set tw=119
+au FileType java set tw=119
+au FileType html set tw=119
+au FileType soy set tw=119
 au FileType python set tw=119
 
 " For writing text
