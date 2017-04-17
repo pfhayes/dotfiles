@@ -1,6 +1,7 @@
 [core]
-  editor = vim
 	ignorecase = false
+  editor = vim
+  mergeoptions = --no-edit
   pager = less
 [alias]
   br = branch
@@ -9,6 +10,9 @@
   df = diff -b
   dif = diff -b
   diff = diff -b
+  grab = clone --depth 1
+  l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  lsc = diff-tree --no-commit-id --name-only -r
   sh = show
   st = status
 [diff]
@@ -35,7 +39,3 @@
 	autosetuprebase = always
 [rerere]
   enabled = true
-[alias]
-  l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  lsc = diff-tree --no-commit-id --name-only -r
-  grab = clone --depth 1
