@@ -56,6 +56,7 @@ LANG='en_US.UTF-8'
 LANGUAGE='en_US.UTF-8'
 LC_CTYPE=C
 DISPLAY=:0
+GIT_MERGE_AUTOEDIT=no
 
 # better which
 bwhich() {
@@ -133,6 +134,7 @@ alias gg="git grep"
 #}
 
 alias codemod='codemod -a -g'
+alias dc=cd
 alias ff='find . | xargs grep 2>/dev/null'
 alias gcaa='git ci -a --amend -C HEAD'
 alias glm='git l --author patrick'
@@ -140,6 +142,7 @@ alias grep='grep --color=auto'
 alias j=jobs
 alias man='LC_ALL=C LANG=C man'
 alias mkdir='mkdir -p'
+alias ports='lsof -n -i4TCP$PORT | grep LISTEN'
 alias shorten="shorten $BIN_HOME/private/shorten_credentials"
 alias vim='vim -O'
 alias vit='vim -t'

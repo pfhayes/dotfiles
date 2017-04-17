@@ -115,6 +115,7 @@ let g:ctrlp_regexp = 1
 let g:ctrlp_max_depth = 40
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 
+
 " Handles lines that are too big for the screen
 " let &showbreak = '> '
 set cpo=n
@@ -210,8 +211,8 @@ noremap <C-k> <C-u>
 
 " Buffers
 nnoremap <C-e> :b#<CR>
-" nnoremap <C-i> :bnext<CR>
-" nnoremap <C-o> :bprev<CR>
+nnoremap <C-i> :bprev<CR>
+nnoremap <C-o> :bnext<CR>
 nnoremap <C-n> :bd<CR>
 
 " Splits the current line at current position
@@ -296,6 +297,7 @@ let g:syntastic_check_on_wq = 0
 " When you create a new file, fills in some code for you
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
 au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
+au BufNewFile *.js 0r ~/.vim/skeletons/skeleton.js
 au BufNewFile __init__.py 0r ~/.vim/skeletons/skeleton.pyinit
 " au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
 au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
@@ -334,5 +336,13 @@ au FileType md set tw=119
 " Latex
 au BufNewFile,BufRead *.tex setf tex
 au FileType tex set tw=79
+
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)}'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_skip_empty_sections = 1
+" let g:airline_section_b = ''
+" let g:airline_section_c = ''
+" let g:airline_powerline_fonts = 1
 
 noh
