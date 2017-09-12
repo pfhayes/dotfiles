@@ -1,5 +1,6 @@
 --exclude=.git
 --exclude=.svn
+--exclude=src/python/sigopt/gen
 --file-scope=no
 
 --langdef=scala
@@ -24,6 +25,8 @@
 --regex-thrift=/^[ \t]*[0-9]+:[ \t]+([a-zA-Z0-9_]+)[ \t]+([a-zA-Z0-9_]+)/\2/m,member/
 --regex-thrift=/^[ \t]*([a-zA-Z0-9_]+)[ \t]+=/\1/a,value/
 --regex-thrift=/^[ \t]*[a-zA-Z0-9_<>]+[ \t]+([a-zA-Z0-9_]+)[ \t]*\(/\1/f,function/
+
+--python-kinds=-iv
 
 --langdef=soy
 --langmap=soy:.soy

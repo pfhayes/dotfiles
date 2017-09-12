@@ -47,6 +47,7 @@ set virtualedit=block,onemore
 set wildmenu
 set wildmode=longest,list:longest
 set endofline
+set tags=tags;
 
 let mapleader=","
 
@@ -67,7 +68,7 @@ inoremap jk <Esc>
 cnoremap jk <C-c>
 
 " Fixing delay sometimes when using O
-set noesckeys
+" set noesckeys
 
 " Trying to use completion
 set complete=.,b,u,]
@@ -243,6 +244,13 @@ au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 " When you write a file, make sure no lines end in whitespace
 au FileType scala autocmd BufWritePre * :%s/\s\+$//e
 au FileType python autocmd BufWritePre * :%s/\s\+$//e
+
+" In python, make sure no trailing whitespace lines
+au FileType python autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##e
+
+"
+nmap <Leader>a [%
+nmap <Leader>s ]%
 
 " Scala
 au BufNewFile,BufRead *.scala setf scala
