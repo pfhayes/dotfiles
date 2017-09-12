@@ -45,18 +45,19 @@ autoload -Uz compinit && compinit
 
 setopt ALL_EXPORT         # export declared variables
 
+DISPLAY=:0
+EDITOR='vim'
+GIT_MERGE_AUTOEDIT=no
 HISTFILE=$HOME/.zhistory
 HISTSIZE=100000
-SAVEHIST=100000
 HOSTNAME="$(hostname)"
-PAGER='less'
-EDITOR='vim'
-LC_ALL='en_US.UTF-8'
 LANG='en_US.UTF-8'
 LANGUAGE='en_US.UTF-8'
+LC_ALL='en_US.UTF-8'
 LC_CTYPE=C
-DISPLAY=:0
-GIT_MERGE_AUTOEDIT=no
+LESS=-FRXi
+PAGER='less'
+SAVEHIST=100000
 
 # better which
 bwhich() {
@@ -250,3 +251,5 @@ zstyle '*' single-ignored show
 
 # Plugins
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f  ~/.initialdir ] && cd $(cat ~/.initialdir)

@@ -98,7 +98,7 @@ if has("ruby")
   nnoremap <silent> <c-p> :CommandT<CR>
   let g:CommandTMaxFiles = 40000
   let g:CommandTUseGitLsFiles = 1
-  let g:CommandTFileScanner = 'git'
+  let g:CommandTFileScanner = 'watchman'
   let g:CommandTMaxHeight = 10
   let g:CommandTWildIgnore = ''
   let g:ctrlp_map = '<c-Q>'
@@ -275,6 +275,7 @@ let g:syntastic_scala_checkers=[]
 let g:syntastic_go_checkers=[]
 let g:syntastic_python_checkers=['flake8']
 let g:syntastic_python_flake8_args='--ignore=E129,E127,E302,E131,E111,E114,E121,E501,E126,E123,I101,I100,N806,F403,E241,E731,F999,F401,D100,D101,D102,F405'
+let g:syntastic_sh_shellcheck_args='--exclude SC1090,SC1091'
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
