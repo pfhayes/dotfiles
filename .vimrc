@@ -1,4 +1,5 @@
 syntax on
+colo peachpuff
 
 " plugins
 filetype off
@@ -98,7 +99,7 @@ if has("ruby")
   nnoremap <silent> <c-p> :CommandT<CR>
   let g:CommandTMaxFiles = 40000
   let g:CommandTUseGitLsFiles = 1
-  let g:CommandTFileScanner = 'watchman'
+  let g:CommandTFileScanner = 'git'
   let g:CommandTMaxHeight = 10
   let g:CommandTWildIgnore = ''
   let g:ctrlp_map = '<c-Q>'
@@ -307,6 +308,7 @@ au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 " When you write a file, make sure no lines end in whitespace
 au FileType cpp autocmd BufWritePre * :%s/\s\+$//e
 au FileType java autocmd BufWritePre * :%s/\s\+$//e
+au FileType json autocmd BufWritePre * :%s/\s\+$//e
 au FileType scala autocmd BufWritePre * :%s/\s\+$//e
 au FileType python autocmd BufWritePre * :%s/\s\+$//e
 

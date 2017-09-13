@@ -1,16 +1,23 @@
 #!/bin/zsh
 
+PATH="$(realpath ~/bin):/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
 setopt NO_BEEP
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_ALLOW_CLOBBER
+setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
+
+setopt EMACS              # Ctrl-A / Ctrl-E to move throughout line
+
 setopt EXTENDED_HISTORY   # puts timestamps in the history
 
-setopt NOCORRECT            # command correction
-setopt NOCORRECT_ALL        # correct all arguments in a line
+setopt NOCORRECT          # command correction
+setopt NOCORRECT_ALL      # correct all arguments in a line
 setopt AUTO_LIST          # list menu on ambiguous expansion
 setopt REC_EXACT          # recognize exact matches, even if ambiguous
 
@@ -49,7 +56,7 @@ DISPLAY=:0
 EDITOR='vim'
 GIT_MERGE_AUTOEDIT=no
 HISTFILE=$HOME/.zhistory
-HISTSIZE=100000
+HISTSIZE=5000000
 HOSTNAME="$(hostname)"
 LANG='en_US.UTF-8'
 LANGUAGE='en_US.UTF-8'
@@ -144,6 +151,9 @@ alias j=jobs
 alias man='LC_ALL=C LANG=C man'
 alias mkdir='mkdir -p'
 alias ports='lsof -n -i4TCP$PORT | grep LISTEN'
+alias 'rmi=docker rmi $(docker images -q)'
+alias 'rmc=docker rm $(docker ps -a -q)'
+alias 'rmv=docker volume rm $(docker volume ls -qf dangling=true)'
 alias shorten="shorten $BIN_HOME/private/shorten_credentials"
 alias vim='vim -O'
 alias vit='vim -t'
@@ -251,5 +261,4 @@ zstyle '*' single-ignored show
 
 # Plugins
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 [ -f  ~/.initialdir ] && cd $(cat ~/.initialdir)
