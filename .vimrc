@@ -75,6 +75,18 @@ set complete=.,b,u,]
 imap <Leader><Tab> <C-P>
 inoremap <C-Tab> <C-X> <C-L>
 
+" Region expand
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" Jump to end after paste
+vnoremap <silent> y y`]^
+vnoremap <silent> p p`]^
+nnoremap <silent> p p`]^
+
+" stop dumb history window
+map q: :q
+
 " Automatically `set paste` when pasting text on OS X
 imap <D-v> ^O:set paste<Enter>^R+^O:set nopaste<Enter>
 
@@ -86,7 +98,7 @@ if has("ruby")
   nnoremap <silent> <c-p> :CommandT<CR>
   let g:CommandTMaxFiles = 40000
   let g:CommandTUseGitLsFiles = 1
-  let g:CommandTFileScanner = 'git'
+  let g:CommandTFileScanner = 'watchman'
   let g:CommandTMaxHeight = 10
   let g:CommandTWildIgnore = ''
   let g:ctrlp_map = '<c-Q>'
@@ -102,6 +114,7 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_regexp = 1
 let g:ctrlp_max_depth = 40
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+
 
 " Handles lines that are too big for the screen
 " let &showbreak = '> '
@@ -123,8 +136,13 @@ endif
 inoremap # X<BS>#
 
 " If any literal tabs make their way into your files, highlight them
-syn match tab display "\t"
-hi link tab Error
+highlight LiteralTabs ctermbg=darkcyan guibg=darkcyan
+match LiteralTabs /\t\+/
+au FileType python autocmd BufWinEnter * match LiteralTabs /\t\+/
+au FileType python autocmd InsertEnter * match LiteralTabs /\t\+\%#\@<!/
+au FileType python autocmd InsertLeave * match LiteralTabs /\t\+/
+au FileType python autocmd BufWinLeave * call clearmatches()
+
 
 " Highlight lines over 80 characters
 match ErrorMsg '\%>80v.\+'
@@ -193,8 +211,8 @@ noremap <C-k> <C-u>
 
 " Buffers
 nnoremap <C-e> :b#<CR>
-" nnoremap <C-i> :bnext<CR>
-" nnoremap <C-o> :bprev<CR>
+nnoremap <C-i> :bprev<CR>
+nnoremap <C-o> :bnext<CR>
 nnoremap <C-n> :bd<CR>
 
 " Splits the current line at current position
@@ -202,6 +220,29 @@ nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 
 " Better MatchParen
 :hi MatchParen cterm=bold ctermbg=none ctermfg=white
+
+" Rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['red',         'firebrick3'],
+    \ ]
 
 " Use gw to open webpages. Only works in OS X right now
 function! Website ()
@@ -229,19 +270,43 @@ nmap <Leader>. ?def\\\\|class<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\
 
 " scala syntax checking is sloooooow
 let g:syntastic_java_checkers=[]
+let g:syntastic_cpp_checkers=[]
 let g:syntastic_scala_checkers=[]
 let g:syntastic_go_checkers=[]
-let g:syntastic_python_checkers=[]
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E129,E127,E302,E131,E111,E114,E121,E501,E126,E123,I101,I100,N806,F403,E241,E731,F999,F401,D100,D101,D102,F405'
+let g:syntastic_sh_shellcheck_args='--exclude SC1090,SC1091'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+"function! QuitPrompt()
+    "write
+    "SyntasticCheck
+    "if exists('b:syntastic_loclist') && !empty(b:syntastic_loclist) && b:syntastic_loclist.isEmpty()
+        "quit
+    "endif
+"endfunction
+"cabbrev wq :call QuitPrompt()<CR>
 
 " When you create a new file, fills in some code for you
 au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
 au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
+au BufNewFile *.js 0r ~/.vim/skeletons/skeleton.js
 au BufNewFile __init__.py 0r ~/.vim/skeletons/skeleton.pyinit
 " au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
 au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
 au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
 
 " When you write a file, make sure no lines end in whitespace
+au FileType cpp autocmd BufWritePre * :%s/\s\+$//e
+au FileType java autocmd BufWritePre * :%s/\s\+$//e
 au FileType scala autocmd BufWritePre * :%s/\s\+$//e
 au FileType python autocmd BufWritePre * :%s/\s\+$//e
 
@@ -254,15 +319,16 @@ nmap <Leader>s ]%
 
 " Scala
 au BufNewFile,BufRead *.scala setf scala
-au FileType scala set tw=119
 au BufNewFile,BufRead *.java setf java
-au FileType java set tw=119
-
 au BufNewFile,BufRead *.html setf html
-au FileType html set tw=119
 au BufNewFile,BufRead *.soy setf soy
-au FileType soy set tw=119
 au BufNewFile,BufRead *.py setf python
+au BufNewFile,BufRead BUILD setf python
+
+au FileType scala set tw=119
+au FileType java set tw=119
+au FileType html set tw=119
+au FileType soy set tw=119
 au FileType python set tw=119
 
 " For writing text
@@ -274,5 +340,13 @@ au FileType md set tw=119
 " Latex
 au BufNewFile,BufRead *.tex setf tex
 au FileType tex set tw=79
+
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)}'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_skip_empty_sections = 1
+" let g:airline_section_b = ''
+" let g:airline_section_c = ''
+" let g:airline_powerline_fonts = 1
 
 noh
