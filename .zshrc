@@ -1,16 +1,23 @@
 #!/bin/zsh
 
+PATH="$(realpath ~/bin):/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
 setopt NO_BEEP
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_ALLOW_CLOBBER
+setopt HIST_IGNORE_SPACE
 setopt HIST_IGNORE_DUPS
 setopt HIST_REDUCE_BLANKS
+
+setopt EMACS              # Ctrl-A / Ctrl-E to move throughout line
+
 setopt EXTENDED_HISTORY   # puts timestamps in the history
 
-setopt NOCORRECT            # command correction
-setopt NOCORRECT_ALL        # correct all arguments in a line
+setopt NOCORRECT          # command correction
+setopt NOCORRECT_ALL      # correct all arguments in a line
 setopt AUTO_LIST          # list menu on ambiguous expansion
 setopt REC_EXACT          # recognize exact matches, even if ambiguous
 
@@ -35,6 +42,9 @@ setopt NOCLOBBER          # can't clobber existing files
 setopt MULTIOS            # allows multiple redirection of output
 setopt CDABLE_VARS        # if var holds a directory, then cd var works
 
+# Enables Ctrl-S for forward history search
+stty -ixon
+
 # Autoload zsh modules when they are referenced
 zmodload -a zsh/stat stat
 autoload -Uz zcalc zmv
@@ -42,17 +52,19 @@ autoload -Uz compinit && compinit
 
 setopt ALL_EXPORT         # export declared variables
 
-HISTFILE=$HOME/.zhistory
-HISTSIZE=1000
-SAVEHIST=1000
-HOSTNAME="$(hostname)"
-PAGER='less'
+DISPLAY=:0
 EDITOR='vim'
-LC_ALL='en_US.UTF-8'
+GIT_MERGE_AUTOEDIT=no
+HISTFILE=$HOME/.zhistory
+HISTSIZE=5000000
+HOSTNAME="$(hostname)"
 LANG='en_US.UTF-8'
 LANGUAGE='en_US.UTF-8'
+LC_ALL='en_US.UTF-8'
 LC_CTYPE=C
-DISPLAY=:0
+LESS=-FRXi
+PAGER='less'
+SAVEHIST=100000
 
 # better which
 bwhich() {
@@ -112,23 +124,25 @@ prompt_hostname() {
 #   - shows the git branch, if any
 #   - shows the current directory
 #   - warns me with red text if running as root
-PS1='[\
-%(0?.. $PR_RED%?$PR_NO_COLOR )\
-%(!.$PR_RED.$PR_BLUE)%n$(prompt_hostname)$PR_NO_COLOR:\
-$(print_git_branch)\
-$PR_CYAN%~$PR_NO_COLOR\
-]%(!.#.$) '
+PS1='['
+PS1+='%(0?.. $PR_RED%?$PR_NO_COLOR )'
+# PS1+='%(!.$PR_RED.$PR_BLUE)%n$(prompt_hostname)$PR_NO_COLOR:'
+PS1+='$(print_git_branch)'
+PS1+='$PR_CYAN%~$PR_NO_COLOR'
+PS1+='] '
 RPS1='$PR_MAGENTA(%D{%b %d %H:%M})$PR_NO_COLOR'
 
 unsetopt ALL_EXPORT
 
-function gg {
-  git submodule foreach "git grep \"$@\"; true"
-  git grep $@
-  true
-}
+alias gg="git grep"
+#function gg {
+  #git submodule foreach "git grep \"$@\"; true"
+  #git grep $@
+  #true
+#}
 
 alias codemod='codemod -a -g'
+alias dc=cd
 alias ff='find . | xargs grep 2>/dev/null'
 alias gcaa='git ci -a --amend -C HEAD'
 alias glm='git l --author patrick'
@@ -136,6 +150,10 @@ alias grep='grep --color=auto'
 alias j=jobs
 alias man='LC_ALL=C LANG=C man'
 alias mkdir='mkdir -p'
+alias ports='lsof -n -i4TCP$PORT | grep LISTEN'
+alias 'rmi=docker rmi $(docker images -q)'
+alias 'rmc=docker rm $(docker ps -a -q)'
+alias 'rmv=docker volume rm $(docker volume ls -qf dangling=true)'
 alias shorten="shorten $BIN_HOME/private/shorten_credentials"
 alias vim='vim -O'
 alias vit='vim -t'
@@ -152,6 +170,23 @@ else
   alias ll='ls -G -Alh'
   export LSCOLORS='exgxfxfxbxfxfxababacac'
 fi
+
+# pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then source /usr/local/bin/virtualenvwrapper.sh; fi
+
+# ctrl-z toggles vim
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
 
 bindkey '^r' history-incremental-search-backward
 bindkey "^[[5~" up-line-or-history
@@ -225,5 +260,5 @@ zstyle ':completion:*:ssh:*' group-order \
 zstyle '*' single-ignored show
 
 # Plugins
-
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f  ~/.initialdir ] && cd $(cat ~/.initialdir)

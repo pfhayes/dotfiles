@@ -1,0 +1,3 @@
+setopt ALL_EXPORT
+
+source ~/Dropbox/dev/dotfiles/.zshrc

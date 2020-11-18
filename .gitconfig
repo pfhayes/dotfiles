@@ -1,14 +1,22 @@
 [core]
-  editor = vim
 	ignorecase = false
+  editor = vim
+  mergeoptions = --no-edit
   pager = less
+[user]
+  name = Patrick Hayes
+  email = pfhayes@gmail.com
 [alias]
+  lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s: \\033[37m %s\\033[0m\\n\", substr($2, 1, length($2)-1), $1)}'
   br = branch
   ci = commit -v
   co = checkout
   df = diff -b
   dif = diff -b
   diff = diff -b
+  git = !exec git
+  grab = clone --depth 1
+  l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   sh = show
   st = status
 [diff]
@@ -35,6 +43,3 @@
 	autosetuprebase = always
 [rerere]
   enabled = true
-[alias]
-  l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  lsc = diff-tree --no-commit-id --name-only -r
