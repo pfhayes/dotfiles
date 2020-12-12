@@ -17,6 +17,7 @@ gdbm
 gdk-pixbuf
 gettext
 gflags
+gh
 git
 gnu-indent
 gnu-sed
@@ -26,7 +27,6 @@ gnupg
 gnupg2
 gnutls
 htop-osx
-hub
 icu4c
 imagemagick
 jemalloc
