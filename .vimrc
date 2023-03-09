@@ -1,4 +1,5 @@
 syntax on
+colo peachpuff
 
 " plugins
 filetype off
