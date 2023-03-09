@@ -1,5 +1,4 @@
 syntax on
-colo peachpuff
 
 " plugins
 filetype off
@@ -311,9 +310,6 @@ au FileType java autocmd BufWritePre * :%s/\s\+$//e
 au FileType json autocmd BufWritePre * :%s/\s\+$//e
 au FileType scala autocmd BufWritePre * :%s/\s\+$//e
 au FileType python autocmd BufWritePre * :%s/\s\+$//e
-
-" In python, make sure no trailing whitespace lines
-au FileType python autocmd BufWritePre * :%s#\($\n\s*\)\+\%$##e
 
 "
 nmap <Leader>a [%
