@@ -1,9 +1,33 @@
-syntax on
-
 " plugins
-filetype off
-call pathogen#infect()
-filetype plugin indent on
+if ! empty(globpath(&rtp, 'autoload/plug.vim'))
+  call plug#begin()
+  Plug 'dense-analysis/ale'
+  Plug 'doums/darcula'
+  Plug 'preservim/nerdcommenter'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-surround'
+  Plug '~/.vim/bundle/command-t'
+  " Plug 'vim-airline/vim-airline'  " Slow!
+  " Plug 'luochen1990/rainbow'  " Slow!
+  call plug#end()
+
+  colo darcula
+
+  " CommandT setup
+  if has("nvim")
+    nnoremap <silent> <c-p> :CommandTGit<CR>
+    let g:CommandTPreferredImplementation='lua'
+    let g:CommandTWildIgnore=''
+    let g:CommandTMaxFiles = 40000
+  elseif has("ruby")
+    nnoremap <silent> <c-p> :CommandT<CR>
+    let g:CommandTMaxFiles = 40000
+    let g:CommandTUseGitLsFiles = 1
+    let g:CommandTFileScanner = 'git'
+    let g:CommandTMaxHeight = 10
+    let g:CommandTWildIgnore = ''
+  endif
+endif
 
 " Some reasonable defaults
 set cursorline
@@ -70,11 +94,6 @@ cnoremap jk <C-c>
 " Fixing delay sometimes when using O
 " set noesckeys
 
-" Trying to use completion
-set complete=.,b,u,]
-imap <Leader><Tab> <C-P>
-inoremap <C-Tab> <C-X> <C-L>
-
 " Region expand
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -93,29 +112,6 @@ imap <D-v> ^O:set paste<Enter>^R+^O:set nopaste<Enter>
 " keystroke to toggle paste
 nmap <silent> <leader>p :set paste!<CR>
 
-" Ctrl-P plugin
-if has("ruby")
-  nnoremap <silent> <c-p> :CommandT<CR>
-  let g:CommandTMaxFiles = 40000
-  let g:CommandTUseGitLsFiles = 1
-  let g:CommandTFileScanner = 'git'
-  let g:CommandTMaxHeight = 10
-  let g:CommandTWildIgnore = ''
-  let g:ctrlp_map = '<c-Q>'
-  let g:ctrlp_cmd = 'CtrlQ'
-else
-  let g:ctrlp_map = '<c-p>'
-  let g:ctrlp_cmd = 'CtrlP'
-endif
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-  \ 'file': '\.class$',
-  \ }
-let g:ctrlp_regexp = 1
-let g:ctrlp_max_depth = 40
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
-
-
 " Handles lines that are too big for the screen
 " let &showbreak = '> '
 set cpo=n
@@ -125,7 +121,7 @@ set noswapfile
 set nobackup
 set nowb
 
-if version >= 703
+if version >= 703 && !has('nvim')
   set undofile
   set undoreload=10000
   set undodir=~/.vimtmp/tmp/undo//
@@ -221,29 +217,6 @@ nnoremap K h/[^ ]<cr>"zd$jyyP^v$h"zp:noh<cr>
 " Better MatchParen
 :hi MatchParen cterm=bold ctermbg=none ctermfg=white
 
-" Rainbow parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-
 " Use gw to open webpages. Only works in OS X right now
 function! Website ()
   let s:url = expand("<cWORD>")
@@ -254,6 +227,9 @@ function! Website ()
   exec "!open \"" . s:url . "\""
 endfunction
 nnoremap gw :call Website()<CR><CR>
+
+" Copy current file path to buffer
+nnoremap <Leader>f :let @+=expand('%:f')<CR>
 
 " Keep files fresh
 :au WinEnter * checktime
@@ -268,24 +244,6 @@ nmap <Leader>y "*Y
 " Indent function signatures. Gross
 nmap <Leader>. ?def\\\\|class<CR>/(<CR>v/[:)]<CR>;<BS><BS><BS><BS><BS>s/\\%V\(\\_[ \\r]*/(\\r/<CR>vi(;s/,\\_[ \\r]*/,\\r/<CR>vi(10<vi(2>?(<CR>%i<CR><Esc><CR>
 
-" scala syntax checking is sloooooow
-let g:syntastic_java_checkers=[]
-let g:syntastic_cpp_checkers=[]
-let g:syntastic_scala_checkers=[]
-let g:syntastic_go_checkers=[]
-let g:syntastic_python_checkers=['flake8']
-let g:syntastic_python_flake8_args='--ignore=E129,E127,E302,E131,E111,E114,E121,E501,E126,E123,I101,I100,N806,F403,E241,E731,F999,F401,D100,D101,D102,F405'
-let g:syntastic_sh_shellcheck_args='--exclude SC1090,SC1091'
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
 "function! QuitPrompt()
     "write
     "SyntasticCheck
@@ -295,56 +253,20 @@ let g:syntastic_check_on_wq = 0
 "endfunction
 "cabbrev wq :call QuitPrompt()<CR>
 
-" When you create a new file, fills in some code for you
-au BufNewFile *.cc 0r ~/.vim/skeletons/skeleton.cc
-au BufNewFile *.h 0r ~/.vim/skeletons/skeleton.h
-au BufNewFile *.js 0r ~/.vim/skeletons/skeleton.js
-au BufNewFile __init__.py 0r ~/.vim/skeletons/skeleton.pyinit
-" au BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
-au BufNewFile *.scala 0r ~/.vim/skeletons/skeleton.scala
-au BufNewFile *.tex 0r ~/.vim/skeletons/skeleton.tex
-
-" When you write a file, make sure no lines end in whitespace
-au FileType cpp autocmd BufWritePre * :%s/\s\+$//e
-au FileType java autocmd BufWritePre * :%s/\s\+$//e
-au FileType json autocmd BufWritePre * :%s/\s\+$//e
-au FileType scala autocmd BufWritePre * :%s/\s\+$//e
-au FileType python autocmd BufWritePre * :%s/\s\+$//e
-
-"
 nmap <Leader>a [%
 nmap <Leader>s ]%
 
-" Scala
-au BufNewFile,BufRead *.scala setf scala
-au BufNewFile,BufRead *.java setf java
-au BufNewFile,BufRead *.html setf html
-au BufNewFile,BufRead *.soy setf soy
-au BufNewFile,BufRead *.py setf python
 au BufNewFile,BufRead BUILD setf python
 
-au FileType scala set tw=119
-au FileType java set tw=119
-au FileType html set tw=119
-au FileType soy set tw=119
-au FileType python set tw=119
+" For code
+set tw=119
 
-" For writing text
+" For text
 au BufNewFile,BufRead *.txt setf txt
 au FileType txt set tw=79
 au BufNewFile,BufRead *.md setf md
 au FileType md set tw=119
-
-" Latex
 au BufNewFile,BufRead *.tex setf tex
 au FileType tex set tw=79
-
-let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)}'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_skip_empty_sections = 1
-" let g:airline_section_b = ''
-" let g:airline_section_c = ''
-" let g:airline_powerline_fonts = 1
 
 noh
