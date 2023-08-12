@@ -28,7 +28,6 @@ gnupg2
 gnutls
 htop-osx
 icu4c
-imagemagick
 jemalloc
 jpeg
 jq
@@ -56,7 +55,6 @@ libyaml
 lynx
 make
 makedepend
-maven
 msgpack
 mypy
 nginx
@@ -76,13 +74,10 @@ rbenv
 readline
 ruby
 ruby-build
-s3cmd
 shellcheck
 sqlite
-unrar
 vim
 watch
-watchman
 wdiff
 wget
 xz
