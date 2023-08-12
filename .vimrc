@@ -11,8 +11,6 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
   " Plug 'luochen1990/rainbow'  " Slow!
   call plug#end()
 
-  colo darcula
-
   " CommandT setup
   if has("nvim")
     nnoremap <silent> <c-p> :CommandTGit<CR>
