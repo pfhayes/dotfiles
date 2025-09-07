@@ -6,6 +6,7 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
   Plug 'preservim/nerdcommenter'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-surround'
+  Plug 'neovim/nvim-lspconfig'
   Plug '~/.vim/bundle/command-t'
   " Plug 'vim-airline/vim-airline'  " Slow!
   " Plug 'luochen1990/rainbow'  " Slow!

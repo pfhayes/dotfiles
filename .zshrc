@@ -52,6 +52,9 @@ autoload -Uz compinit && compinit
 
 setopt ALL_EXPORT         # export declared variables
 
+# Fix slow zsh tab completion for git
+GIT_COMPLETION_CHECKOUT_NO_GUESS=1
+
 DISPLAY=:0
 EDITOR='vim'
 GIT_MERGE_AUTOEDIT=no
@@ -154,7 +157,6 @@ alias ports='lsof -n -i4TCP$PORT | grep LISTEN'
 alias 'rmi=docker rmi $(docker images -q)'
 alias 'rmc=docker rm $(docker ps -a -q)'
 alias 'rmv=docker volume rm $(docker volume ls -qf dangling=true)'
-alias shorten="shorten $BIN_HOME/private/shorten_credentials"
 alias vim='vim -O'
 alias vit='vim -t'
 
