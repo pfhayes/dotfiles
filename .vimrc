@@ -14,6 +14,9 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
   Plug 'luochen1990/rainbow'  " Slow?
   call plug#end()
 
+  let g:rainbow_active = 1
+  colo darcula
+
   " CommandT setup
   if has("nvim")
     nnoremap <silent> <c-p> :CommandTGit<CR>
@@ -29,8 +32,6 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
     let g:CommandTWildIgnore = ''
   endif
 endif
-
-let g:rainbow_active = 1
 
 " Some reasonable defaults
 set cursorline

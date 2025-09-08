@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
+
+BASE_PATH=/Users/patrick/Dropbox/dev/dotfiles
+if [ ! -d "$BASE_PATH" ]; then
+  echo >&2 "Expected $BASE_PATH to exist"
+  exit 1
+fi
 
 # Xcode tools
 if ! xcode-select -p; then
@@ -11,17 +17,16 @@ fi
 brew update
 brew upgrade
 xargs brew install <homebrew.packages
-brew tap homebrew/cask-fonts
-brew cask install font-source-code-pro
+brew install --cask font-source-code-pro
 
 # Links
-BASE_PATH=/Users/patrick/Dropbox/dev/dotfiles
+[ -f ~/.config/nvim/init.lua ] || cp -f "$BASE_PATH/.nvim.init.lua.local" ~/.config/nvim/init.lua
 [ -L ~/.dircolors ] || ln -sf "$BASE_PATH/.dircolors" ~/.dircolors
 [ -L ~/.vim ] || ln -sf "$BASE_PATH/.vim" ~/.vim
 [ -L ~/.zsh ] || ln -sf "$BASE_PATH/.zsh" ~/.zsh
-[ -f ~/.gitconfig ] || cp -f .gitconfig.local ~/.gitconfig
-[ -f ~/.vimrc ] || cp -f .vimrc.local ~/.vimrc
-[ -f ~/.zshrc ] || cp -f .zshrc.local ~/.zshrc
+[ -f ~/.gitconfig ] || cp -f "$BASE_PATH/.gitconfig.local" ~/.gitconfig
+[ -f ~/.vimrc ] || cp -f "$BASE_PATH/.vimrc.local" ~/.vimrc
+[ -f ~/.zshrc ] || cp -f "$BASE_PATH/.zshrc.local" ~/.zshrc
 
 cd ~
 
