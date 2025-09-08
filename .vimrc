@@ -8,8 +8,10 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
   Plug 'tpope/vim-surround'
   Plug 'neovim/nvim-lspconfig'
   Plug '~/.vim/bundle/command-t'
-  " Plug 'vim-airline/vim-airline'  " Slow!
-  " Plug 'luochen1990/rainbow'  " Slow!
+  Plug 'windwp/nvim-autopairs'
+  " Plug 'nvim-lualine/lualine.nvim'  " Icons broken, cant disable
+  Plug 'vim-airline/vim-airline'  " Slow?  Try lualine instead?
+  Plug 'luochen1990/rainbow'  " Slow?
   call plug#end()
 
   " CommandT setup
@@ -27,6 +29,8 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
     let g:CommandTWildIgnore = ''
   endif
 endif
+
+let g:rainbow_active = 1
 
 " Some reasonable defaults
 set cursorline

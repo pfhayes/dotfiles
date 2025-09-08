@@ -2,9 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
 echo "Patrick doesn't use bash anymore, and this .bashrc is out of date."
 echo "Refer to .zshrc instead"
 
@@ -37,11 +34,6 @@ if [ -n `which git` ]; then
     PS1='\[\033[01;32m\]$(parse_git_branch "%s")\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
-# Use the prefix of what you have typed already to search backwards when
-# pressing up/down to navigate history
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -70,4 +62,3 @@ alias l='ls -CF'
 #if [ -n "$CAPS" ]; then
 #  xmodmap ~/.speedswapper
 #fi
-
