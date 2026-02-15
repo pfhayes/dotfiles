@@ -12,6 +12,7 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
   " Plug 'nvim-lualine/lualine.nvim'  " Icons broken, cant disable
   Plug 'vim-airline/vim-airline'  " Slow?  Try lualine instead?
   Plug 'luochen1990/rainbow'  " Slow?
+  Plug 'TabbyML/vim-tabby'
   call plug#end()
 
   let g:rainbow_active = 1

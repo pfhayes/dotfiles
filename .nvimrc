@@ -6,9 +6,13 @@ set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/Dropbox/dev/dotfiles/.vimrc
 
+luafile ~/Dropbox/dev/dotfiles/tabby.lua
+let g:airline_section_y = '%{g:tabby_status}'
+
 lua <<END
 require("nvim-autopairs").setup {}
-require('lspconfig').ts_ls.setup {}
+vim.lsp.config.ts_ls = {}
+vim.lsp.enable('ts_ls')
 END
 
 let g:ale_fixers = {
