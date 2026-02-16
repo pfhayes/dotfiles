@@ -1,18 +1,22 @@
+let s:dotfiles = expand('<sfile>:p:h')
+
 unmap Y
 set clipboard=unnamed
 
 hi clear
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
-source ~/Dropbox/dev/dotfiles/.vimrc
+execute 'source' s:dotfiles . '/.vimrc'
 
-luafile ~/Dropbox/dev/dotfiles/tabby.lua
+execute 'luafile' s:dotfiles . '/tabby.lua'
 let g:airline_section_y = '%{g:tabby_status}'
 
 lua <<END
 require("nvim-autopairs").setup {}
-vim.lsp.config.ts_ls = {}
-vim.lsp.enable('ts_ls')
+if vim.lsp.config then
+  vim.lsp.config.ts_ls = {}
+  vim.lsp.enable('ts_ls')
+end
 END
 
 let g:ale_fixers = {
