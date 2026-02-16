@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-PATH="$(realpath ~/bin):/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+PATH="$HOME/.local/bin:/snap/bin:$(realpath ~/bin):/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 setopt NO_BEEP
@@ -157,8 +157,9 @@ alias ports='lsof -n -i4TCP$PORT | grep LISTEN'
 alias 'rmi=docker rmi $(docker images -q)'
 alias 'rmc=docker rm $(docker ps -a -q)'
 alias 'rmv=docker volume rm $(docker volume ls -qf dangling=true)'
-alias vim='vim -O'
-alias vit='vim -t'
+alias vim='nvim -O'
+alias vi='nvim'
+alias vit='nvim -t'
 
 # colorizing ls output is different on different platforms
 ls --color=auto >/dev/null 2>/dev/null
