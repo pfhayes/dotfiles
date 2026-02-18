@@ -16,7 +16,9 @@ if ! empty(globpath(&rtp, 'autoload/plug.vim'))
   call plug#end()
 
   let g:rainbow_active = 1
-  colo darcula
+  if !empty(globpath(&rtp, 'colors/darcula.vim'))
+    colo darcula
+  endif
 
   " CommandT setup
   if has("nvim")
