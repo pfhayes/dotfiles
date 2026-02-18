@@ -56,6 +56,6 @@ if ! command -v claude &>/dev/null; then
 fi
 
 # Vim plugins
-if command -v nvim &>/dev/null; then
-  nvim --headless +PlugUpdate +qall
+if command -v vim &>/dev/null; then
+  vim +PlugUpdate +qall
 fi

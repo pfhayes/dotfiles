@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
-# Run this once when setting up a new Linux (GNOME) machine!
+# Run this once when setting up a new Linux machine!
 
-# Remap Caps Lock to Control
-gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+if [[ "${XDG_CURRENT_DESKTOP:-}" == *GNOME* ]] || command -v gsettings &>/dev/null; then
+  # Remap Caps Lock to Control
+  gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 
-# Set a fast keyboard repeat rate (interval in ms, lower = faster)
-gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 15
-gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+  # Set a fast keyboard repeat rate (interval in ms, lower = faster)
+  gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 15
+  gsettings set org.gnome.desktop.peripherals.keyboard delay 200
 
-# Disable auto-correct / spell check
-gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
+  # Disable auto-correct / spell check
+  gsettings set org.gnome.desktop.interface gtk-enable-primary-paste true
 
-# Show hidden files in file manager
-gsettings set org.gnome.nautilus.preferences show-hidden-files true
+  # Show hidden files in file manager
+  gsettings set org.gnome.nautilus.preferences show-hidden-files true
 
-# Disable the idle/screen lock timeout
-gsettings set org.gnome.desktop.session idle-delay 0
+  # Disable the idle/screen lock timeout
+  gsettings set org.gnome.desktop.session idle-delay 0
+fi
 
 # Make Terminal start faster
 touch ~/.hushlogin
