@@ -57,5 +57,7 @@ fi
 
 # Vim plugins
 if command -v vim &>/dev/null; then
+  tty_state=$(stty -g 2>/dev/null)
   vim +PlugUpdate +qall </dev/null
+  [ -n "$tty_state" ] && stty "$tty_state" 2>/dev/null || true
 fi
