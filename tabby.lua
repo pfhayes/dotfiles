@@ -2,6 +2,12 @@
 -- Delete this file and remove the Plug/source lines to disable
 
 vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio"}
+
+-- Preload patched nvim_lsp module to fix make_position_params for Neovim 0.11+
+-- This survives :PlugUpdate since the require cache takes priority
+package.preload["tabby.lsp.nvim_lsp"] = function()
+  return dofile(vim.fn.expand("~/Dropbox/dev/dotfiles/tabby_nvim_lsp_patch.lua"))
+end
 vim.g.tabby_inline_completion_trigger = 'auto'
 vim.g.tabby_keybinding_accept = '<Tab>'
 vim.g.tabby_keybinding_trigger_or_dismiss = '<C-\\>'
