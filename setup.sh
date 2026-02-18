@@ -57,5 +57,5 @@ fi
 
 # Vim plugins
 if command -v vim &>/dev/null; then
-  vim +PlugUpdate +qall
+  vim +PlugUpdate +qall </dev/null
 fi
