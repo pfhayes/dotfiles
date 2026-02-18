@@ -1,5 +1,22 @@
+#!/usr/bin/env bash
 # Run this once when setting up a new mac!
 # Grabbed from http://github.com/mathiasbynens/dotfiles
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Xcode tools
+if ! xcode-select -p &>/dev/null; then
+  xcode-select --install
+fi
+
+# Homebrew
+if ! command -v brew &>/dev/null; then
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" </dev/null
+fi
+brew update
+brew upgrade
+xargs brew install < "$DIR/homebrew.packages"
+brew install --cask font-source-code-pro
 
 # Show remaining battery time; hide percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "NO"
@@ -80,3 +97,11 @@ touch ~/.hushlogin
 # Kill affected applications
 for app in Finder Dock SystemUIServer; do killall "$app" >/dev/null 2>&1; done
 
+# Terminal preferences
+cp "$DIR/com.apple.Terminal.plist" ~/Library/Preferences/com.apple.Terminal.plist
+chsh -s /bin/zsh
+
+echo 'TODO(patrick): Set mouse tap to click'
+echo 'TODO(patrick): Update tracking speed'
+echo 'TODO(patrick): Configure displays to optimize for retina display'
+echo 'TODO(patrick): Set up SSH keys'
